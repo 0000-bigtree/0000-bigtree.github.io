@@ -2,7 +2,7 @@
 permalink: blog/:year/:month/:day/:title.html
 
 # Setup
-title: '王大树的博客'
+title: '大树的博客'
 tagline: ''
 description: '天行健，君子以自强不息'
 baseurl: 'http://0000-bigtree.github.io'
