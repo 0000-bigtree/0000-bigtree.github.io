@@ -321,7 +321,6 @@ a.sidebar-nav-item:focus {
 .page-title,
 .post-title {
   margin-top: 0;
-  margin-bottom: 1rem;
 }
 
 /* Meta data line below post title */
@@ -358,6 +357,7 @@ a.sidebar-nav-item:focus {
 }
 
 .posts { list-style-type: none; }
+.posts li { margin-bottom: 1rem; }
 
 .posts .post-link {
   font-size: 24px;
