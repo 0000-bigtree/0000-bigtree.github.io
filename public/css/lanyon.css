@@ -356,6 +356,8 @@ a.sidebar-nav-item:focus {
   color: inherit;
 }
 
+.posts { list-style-type: none; }
+
 .posts .post-link {
   font-size: 24px;
   letter-spacing: -1px;
