@@ -356,6 +356,17 @@ a.sidebar-nav-item:focus {
   color: inherit;
 }
 
+.posts .post-link {
+  font-size: 24px;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.posts .post-date {
+  display: block;
+  font-size: 15px;
+  color: #818181;
+}
 
 /*
  * Pagination
