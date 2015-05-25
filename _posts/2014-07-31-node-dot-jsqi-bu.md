@@ -163,7 +163,7 @@ Node.js 默认提供了一些全局对象 (Global Objects)，对一些功能进�
 
 更通常的方法是将程序代码放入文件中：
 
-``` javascript
+{% highlight javascript %}
 // output.js
 os = require('os');
 console.info('my pc\'s cpu model is ' + os.cpus()[0].model);
@@ -178,7 +178,7 @@ fs.readFile('C:\\boot.ini', 'utf8', function (err, data) {
   }
   console.log(data);
 });
-```
+{% endhighlight %}
 
 在命令行中执行，显示如下输入：
 
@@ -198,7 +198,7 @@ fs.readFile('C:\\boot.ini', 'utf8', function (err, data) {
 在 [Node.js](http://nodejs.org) 的主页上，有一个较复杂一点的例子，实现了一个简单的HTTP 服务器，
 服务器运行后，当访问端口 1337 时，简单输出一个字符串“Hello World”。
 
-``` javascript
+{% highlight javascript %}
 // server.js
 var http = require('http'); // 引入http模块
 http.createServer(function (req, res) { // 收到请求后执行该函数
@@ -206,7 +206,7 @@ http.createServer(function (req, res) { // 收到请求后执行该函数
   res.end('Hello World\n');
 }).listen(1337, '127.0.0.1'); // 监听端口1337
 console.log('Server running at http://127.0.0.1:1337/');
-```
+{% endhighlight %}
 
 运行：
 
@@ -218,7 +218,7 @@ console.log('Server running at http://127.0.0.1:1337/');
 下面我来实现另一个例子，用一个客户端去访问前面所述的 HTTP 服务器，获取其输出。
 Node.js 也提供了 Http Client 的封装，代码如下：
 
-``` javascript
+{% highlight javascript %}
 // httpclient.js
 var http = require('http');  
 http.get({host: '127.0.0.1', port: 1337}, function(res) {  
@@ -227,7 +227,7 @@ http.get({host: '127.0.0.1', port: 1337}, function(res) {
         console.log('response data: ' + data);  
     });  
 });
-```
+{% endhighlight %}
 
 运行：
 
