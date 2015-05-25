@@ -1,5 +1,5 @@
 # Permalinks
-permalink: /blog/:year/:month/:day/:title.html
+permalink: blog/:year/:month/:day/:title.html
 
 # Setup
 title: '大树的博客'
