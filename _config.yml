@@ -5,11 +5,12 @@ permalink:           pretty
 relative_permalinks: true
 
 # Setup
-title:               '大树的博客'
-tagline:             '天行健，君子以自强不息'
-description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:                 http://lanyon.getpoole.com
-baseurl:             ''
+title:  '大树的博客'
+tagline: ''
+description: '天行健，君子以自强不息'
+baseurl: ""
+url: "http://0000-bigtree.github.io"
+github_username:  0000-bigree
 paginate:            5
 
 # About/contact
