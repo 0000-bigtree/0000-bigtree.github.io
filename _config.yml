@@ -10,6 +10,6 @@ url: 'http://0000-bigtree.github.io'
 github_username: '0000-bigree'
 
 markdown: kramdown
-paginate: 5
+paginate: 6
 paginate_path: "blog/page:num"
 
