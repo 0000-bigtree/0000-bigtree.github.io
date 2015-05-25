@@ -43,7 +43,7 @@ GNUstep Devel 是编译器及相关工具，包括 gcc、make、automake等。
 
 上 HelloWorld 代码：
 
-``` objective-c
+{% highlight objective-c %}
 // main.m
 #import <Foundation/Foundation.h>
 
@@ -56,7 +56,8 @@ int main (int argc, const char * argv[])
     [pool drain]; // 释放已分配的内存池
     return 0;
 }
-```
+{% endhighlight %}
+
 
 进入 GNUstep Shell 编译(开始菜单中 GNUstep->Shell)：
 
@@ -82,4 +83,4 @@ release
 
 
 1.0.0，bigtree，2015年5月25日  
-迁移到 jekyll，符合 GFM 的语法
+迁移到 Jekyll，符合 GFM 的语法
