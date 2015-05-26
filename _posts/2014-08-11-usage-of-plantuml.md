@@ -1,12 +1,11 @@
 ---
 layout: post
-title: "PlantUML 使用简明教程"
+title: "PlantUML 简明使用教程"
 date: 2014-08-11 07:19:29 +0000
 comments: true
 sharing: false
 categories: UML PlantUML
 ---
-<!-- more -->
 [http://www.plantuml.com/index.html](http://www.plantuml.com/index.html)
     java -jar c:\coder\java\tools\plantuml\plantuml\plantuml.jar newpumlTemplate.puml -charset utf-8
     
@@ -19,7 +18,7 @@ PlantUML should be working with any version of GraphViz, starting with 2.26.3
     java -Dhttp.proxyHost=myproxy.com -Dhttp.proxyPort=8080 -jar plantuml.jar -checkversion
 
 - - -
-#### 修改历史
+# 修改历史
 1.0.0，bigtree，2014年8月11日  
 created  
 
