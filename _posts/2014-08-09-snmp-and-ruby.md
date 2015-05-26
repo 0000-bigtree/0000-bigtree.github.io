@@ -55,6 +55,7 @@ session.close
 - - -
 
 修改历史
+
 1.0.0，bigtree，2014年8月9日  
 created  
 
@@ -63,4 +64,3 @@ release
 
 1.0.0，bigtree，2015年5月26日  
 迁移到 Jekyll，符合 GFM 的语法
-
