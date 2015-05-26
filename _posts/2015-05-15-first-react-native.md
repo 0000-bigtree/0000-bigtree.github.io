@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "React Native 初步"
+title:  "React Native 起步"
 date:   2015-05-15 00:00:00
 categories: React Native
 ---

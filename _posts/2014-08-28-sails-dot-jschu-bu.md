@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Sails.js 初步"
+title: "Sails.js 起步"
 date: 2014-08-28 02:13:09 +0000
 comments: true
 sharing: false
