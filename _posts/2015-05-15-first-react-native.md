@@ -35,7 +35,7 @@ JavaScript 的应用场合， 在浏览器上，从最初的简单 Web 特效，
 
 在移动设备上，有两种方式，一种方式跟桌面上的 Github Electron 类似，在移动 app 中，利用内嵌的 Google Chrome 来展示界面，
 然后封装了移动平台的相关功能为 JS 库，供 JavaScript 代码调用。这类 app 称之为 混合应用(hybrid app)，
-比较典型的有 http://ionicframework.com[Ionic]，目前支持 iOS 和 Android。
+比较典型的有 [Ionic](http://ionicframework.com)，目前支持 iOS 和 Android。
 另一种方式就是 react native，使用了 Web 相关的技术栈，但 app 内部并没有内嵌浏览器，而是通过框架将 JS 的界面代码
 转换为本地代码的界面，原理上来说，这种方式性能更高，灵活性也更强，但框架实现起来，相对复杂一些，基于这种方式来开发 app，
 也要比 hybrid app 复杂一点。 
