@@ -45,21 +45,21 @@ java -jar jython-standalone-x.x.x.jar script.py
 
 # 3. 配置 Jython
 
-* 配置环境变量 JYTHON_HOME
+## 配置环境变量 JYTHON_HOME
 
 Jython 的安装目录，如下图所示
 
 ![Jythoh Home](/resources/img/2014-01-10-windowsxia-jythonan-zhuang-zhi-nan/jython_home.png)
 
-* 配置环境变量 JYTHONPATH
+## 配置环境变量 JYTHONPATH
 
 Jython 模块(库)的搜索目录。
 
-* 配置环境变量 JYTHON_OPTS
+## 配置环境变量 JYTHON_OPTS
 
 Jython 解释器的缺省选项，运行 Jython 解释器时，会自动加上这些选项。
 
-* 配置环境变量 Path
+## 配置环境变量 Path
 
 将%JYTHON_HOME%\bin 加到可执行文件搜索路径中，以“;”分隔，如下图所示，
 

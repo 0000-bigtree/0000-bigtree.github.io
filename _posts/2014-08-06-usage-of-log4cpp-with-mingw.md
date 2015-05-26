@@ -50,7 +50,9 @@ categories: C/C++ MinGW log4cpp
     $ make install   
 
 - - -
+
 修改历史
+
 1.0.0，bigtree，2014年8月6日  
 created  
 

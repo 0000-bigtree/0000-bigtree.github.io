@@ -18,7 +18,9 @@ PlantUML should be working with any version of GraphViz, starting with 2.26.3
     java -Dhttp.proxyHost=myproxy.com -Dhttp.proxyPort=8080 -jar plantuml.jar -checkversion
 
 - - -
-# 修改历史
+
+修改历史
+
 1.0.0，bigtree，2014年8月11日  
 created  
 

@@ -35,7 +35,7 @@ categories: JavaScript Node Node.js Sails Sails.js
     
 可以通过 <http://localhost:1337/> 来访问。
 
-## 创建API模板
+## 创建 API 模板
 
     sails generate api sentence
 
@@ -47,7 +47,7 @@ categories: JavaScript Node Node.js Sails Sails.js
     info: REST API generated @ http://localhost:1337/sentence
     info: and will be available the next time you run `sails lift`.    
 
-查看 SentenceController.js 和 Sentence.js，可以看到他们并不实质的内容，只是有一些模板代码：
+查看 SentenceController.js 和 Sentence.js，可以看到他们并没有实质的内容，只是有一些模板代码：
 
 {% highlight javascript %}
 /**

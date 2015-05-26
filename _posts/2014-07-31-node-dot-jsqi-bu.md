@@ -96,7 +96,11 @@ npm全 局安装时(全局安装是指运行 `npm install` 命令时，加上 -g
 
 ## 在OS X下安装配置Node.js
 
+略
+
 ## 在Linux下安装配置Node.js
+
+略
 
 # 2.Hello World
 

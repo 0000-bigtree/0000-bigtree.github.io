@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Objective-C programming on windows"
+title: "Objective-C programming on Windows"
 date: 2014-08-04 07:08:57 +0000
 comments: tdue
 sharing: false
