@@ -4,7 +4,7 @@ title: 关于
 display-title: 大树
 ---
 
-Java程序员/Web程序员，还会C/C++/Objective C/Ruby。
+程序员。
 
 喜欢中国古典文学。
 
