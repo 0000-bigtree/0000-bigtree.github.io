@@ -24,7 +24,7 @@ categories: NSClient++ C++
 
 # 编译步骤
 
-## 编译时需要的软件
+## 编译时需要的软件说明
 
 按照官网的[说明](http://docs.nsclient.org/manual/build.html#windows)，需要先安装以下软件：
 
@@ -34,7 +34,7 @@ categories: NSClient++ C++
 
 * Python 2.7
 
-这个估计是提供库和头文件，来支持嵌入 Python 解释器的。
+作用一是运行一些 Python 写的构建脚本；二是提供库和头文件，来支持嵌入 Python 解释器。
 
 * Visual Studio
 
@@ -53,7 +53,7 @@ categories: NSClient++ C++
 [Msysgit](http://msysgit.github.io)，用来从 Github 上下载源代码，编译时不需要。
 
 
-## 具体过程
+## 安装所需要的软件
 
 ### 安装 CMake
 
@@ -61,6 +61,35 @@ categories: NSClient++ C++
     
 我用了 [Chocolatey](https://chocolatey.org) 来安装 CMake，以简化安装过程。它安装的 CMake 版本是 3.3.2。
 
+### 安装 Python 2
 
+    cinst python2
+    
+当前 Python 的最新版本是 2.7.10
 
+### 安装 Visual Studio
 
+    cinst visualstudioexpress2013windows
+    
+Visual Studio Express 版可以免费使用，版本号是 2013，已经足够使用。
+
+### 安装 WiX
+
+    cinst wixtoolset
+    
+## 验证安装
+
+    cmake --version
+    python -V
+    perl -v
+    cl /?
+
+## 获取并构建依赖的库
+
+    md win32-build-folder 
+    cd win32-build-folder 
+    git clone --recursive https://github.com/mickem/nscp.git
+    python nscp\build\python\fetchdeps.py --target win32 --cmake-config dist
+    
+执行 fetchdeps.py 脚本需要很长时间，它会去下载工程的依赖库的源码。有些依赖库很庞大。
+比如，它的一个依赖 boost，其源代码包 boost_1_56_0.zip 的大小是 161 M。
