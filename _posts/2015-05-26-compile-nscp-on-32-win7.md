@@ -6,7 +6,7 @@ comments: true
 sharing: false
 categories: NSClient++ C++
 ---
-# NSClient++ 简介
+# NSClient++
 
 [NSClient++](http://www.nsclient.org/) 是一个监控客户端，由 C++ 编写，支持对 Linux 和 Windows
 系统进行监控。另外，它还支持多种技术来扩展其功能，包括外部脚本、Lua 脚本、Python 脚本、.NET 模块和本地模块。
@@ -77,6 +77,12 @@ Visual Studio Express 版可以免费使用，版本号是 2013，已经足够�
 
     cinst wixtoolset
     
+### 安装 Perl
+
+    cinst activeperl
+    
+安装的是 [Active Perl Community Edition](http://www.activestate.com/activeperl/downloads)。
+
 ## 验证安装
 
     cmake --version
@@ -91,5 +97,44 @@ Visual Studio Express 版可以免费使用，版本号是 2013，已经足够�
     git clone --recursive https://github.com/mickem/nscp.git
     python nscp\build\python\fetchdeps.py --target win32 --cmake-config dist
     
-执行 fetchdeps.py 脚本需要很长时间，它会去下载工程的依赖库的源码。有些依赖库很庞大。
-比如，它的一个依赖 boost，其源代码包 boost_1_56_0.zip 的大小是 161 M。
+执行 fetchdeps.py 脚本需要很长时间，一个原因是它会去下载工程的依赖库的源码。有些依赖库的源码包很庞大。
+比如，它的一个依赖 boost，其源代码包 boost_1_56_0.zip 的大小是 161 M。另一个原因是，对这些依赖库的源码编译
+也需要很长的时间。
+
+在这个阶段会出现一个问题，在编译依赖 protobuf-2.6.1 时，由于其 VS 工程文件使用
+的是比较老的 Vistual Studio 版本。VS Express 2013 命令行工具不能直接使用。需要将
+文件转换为 VS Express 2013 可以识别的工程文件格式。
+转换方法是，直接打开 `win32-build-folder\protobuf-2.6.1\vsprojects\protobuf.sln`，
+VS Express 2013 会提示需要转换，确定即可。
+VS 会将这些工程文件由 `*.vcproj` 转换为 VS 2013 命令行可以识别的 `*.vcxproj`。
+转换完成后，再输入命令，继续前面中断的编译过程，
+
+    python nscp\build\python\fetchdeps.py --target win32 --cmake-config dist
+    
+可以看到如下的提示，
+
+    ...
+    INFO DONE: msbuild vsprojects\libprotobuf-lite.vcxproj /p:Configuration=Debug
+    OK   breakpad does not require building
+    OK   CMake config written to: dist
+    
+     * PROTOBUF
+       Be sure to install protocol buffers python library in your python installation (notice if you have multiple you need
+    to do this for all of them):
+       cd D:\workspace\tmp\win32-build-folder\protobuf-2.6.1\python
+       c:\path\of\python.exe setup.py install
+    
+     * BREAKPAD
+       Google breakpad requires the plattform SDK to be able to build so you need to buildthat manually.
+    
+     * VALIDATE
+       You can (if you wich) validate your setup using the following command:
+       cmake -D TARGET=dist -D SOURCE=D:/workspace/tmp/win32-build-folder/nscp -P D:/workspace/tmp/win32-build-folder/nscp\c
+    heck_deps.cmake
+       Notice: boost will probably fail since it does not know which compiler you are using
+    
+     * NSCLIENT++
+       To build NSClient++ you can run the following commands
+       cd dist
+       cmake -G "Visual Studio 8 2005" D:/workspace/tmp/win32-build-folder/nscp
+
