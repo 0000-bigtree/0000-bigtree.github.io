@@ -23,6 +23,7 @@ categories:
         24.5-i686-mingw32
         home
         emacs.bat
+        .gitignore
         
         
 在 emacs 目录下新建 emacs.bat 文件，内容如下，
@@ -36,6 +37,13 @@ categories:
 emacs 会读取 HOME 系统变量，作为自己的主目录。启动 emacs 时，使用 runemacs.exe，
 不会在 emacs 窗口后面出现控制台窗口。--no-splash 参数指定无启动闪屏，--mm 参数
 指定窗口最大化。
+
+编辑 .gitignore，过滤不需要放入 VCS 的文件和目录，
+
+    24.5-i686-mingw32
+    home/.backups
+    home/.emacs.d
+    home/.session
 
 
 
