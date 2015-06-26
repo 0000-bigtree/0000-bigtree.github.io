@@ -18,7 +18,7 @@ categories:
 
 解压后，目录结果如下所示，这样的结构便于版本升级，在各个操作系统下使用统一的配置文件，
 
-    coder
+    D:\workspace\coder
       emacs
         24.5-i686-mingw32
         home
