@@ -251,7 +251,8 @@ boot.sh 内容，
 
 ### 安装及更新软件
 
-     sudo apt-get upgrade 
+     sudo apt-get upgrade
+     sudo apt-get install -y build-essential
      sudo apt-get install -y emacs24 
      # sudo apt-get install -y emacs24 --only-upgrade
      sudo apt-get install -y git
@@ -317,6 +318,8 @@ BASH 缺省的提示符是这样子的 `vagrant@vagrant-ubuntu-trusty:~/workspac
 ## 安装 ruby-build
 
     sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+    sudo apt-get install -y libmysqlclient-dev # for mysql2 gem
+    sudo apt-get install -y libsqlite3-dev # for sqlite3 gem
     git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
     rbenv install -l # 查看可用的版本
     rbenv install 2.2.2 # 安装最新的 2.2.2 版本
