@@ -329,6 +329,7 @@ BASH 缺省的提示符是这样子的 `vagrant@vagrant-ubuntu-trusty:~/workspac
     gem update --system
     gem install bundle
     rbenv rehash
+    bundle config 'mirror.https://rubygems.org' 'https://ruby.taobao.org' # 配置 bundle gem 源镜像
     
 # 使用 putty 自动登录
 
