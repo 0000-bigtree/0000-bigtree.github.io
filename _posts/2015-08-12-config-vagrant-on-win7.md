@@ -91,27 +91,39 @@ Vagrant 也提供了将一个虚拟机打包为 box 的方法，
 base。`vagrant init` 执行后，会在当前目录下生成一个 Vagrantfile，这个文件实际上是一个 Ruby 源代码文件。读取其中
 的配置，实际上就是执行它。
 
+## CPU及内存配置
+
+编辑 Vagrantfile 文件，
+
+    config.vm.provider "virtualbox" do |vb|
+      # Display the VirtualBox GUI when booting the machine
+      vb.gui = false
+      vb.cpus = 2 # Customize the amount of cpu on the VM:
+      # Customize the amount of memory on the VM:
+      vb.memory = "1024"
+    end
+
 ## 网络配置
 
 Vagrant的网络有三种模式：
 
-1. 较为常用是端口映射，就是将虚拟机中的端口映射到宿主机对应的端口直接使用 ，在 Vagrantfile 中配置：
+(1). 较为常用是端口映射，就是将虚拟机中的端口映射到宿主机对应的端口直接使用 ，在 Vagrantfile 中配置，
 
     config.vm.network :forwarded_port, guest: 80, host: 8080
 
 guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机的 8080 端口。
 
-2. 如果需要自己自由的访问虚拟机，但是别人不需要访问虚拟机，可以使用 private_network，
-并为虚拟机设置 IP ，在 Vagrantfile 中配置：
+(2). 如果需要自己自由的访问虚拟机，但是别人不需要访问虚拟机，可以使用 private_network，
+并为虚拟机设置 IP ，在 Vagrantfile 中配置，
 
     config.vm.network :private_network, ip: "192.168.1.104"
-    
-192.168.1.104 表示虚拟机的 IP，多台虚拟机的话需要互相访问的话，设置在相同网段即可
 
-3. 如果需要将虚拟机作为当前局域网中的一台计算机，由局域网进行 DHCP，那么在 Vagrantfile 中配置：
+192.168.1.104 表示虚拟机的 IP，多台虚拟机的话需要互相访问的话，设置在相同网段即可。
+
+(3). 如果需要将虚拟机作为当前局域网中的一台计算机，由局域网进行 DHCP，那么在 Vagrantfile 中配置，
 
     config.vm.network :public_network
-    
+
 ## 目录映射
 
 一般情况下，进行开发时，源代码保存在宿主机中，方便地使用 IDE 等工具，
@@ -150,7 +162,7 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
 
 解决办法：
 
-1. 先启动虚拟机，执行命令，
+(1). 先启动虚拟机，执行命令，
 
     vagrant up
     
@@ -158,7 +170,7 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
 给这个虚拟机设置虚拟光盘为 VBoxGuestAdditions.iso 文件。VBoxGuestAdditions.iso 文件
 在 VirtualBox 的安装目录下。
 
-2. 使用 putty 进入虚拟机，IP 和端口为 127.0.0.1:2222，
+(2). 使用 putty 进入虚拟机，IP 和端口为 127.0.0.1:2222，
 
     sudo mount /dev/cdrom /media/cdrom
     cd /media/cdrom
@@ -166,11 +178,11 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
     sudo umount /media/cdrom
     sudo eject /dev/cdrom
 
-3. 重启虚拟机，执行命令，
+(3). 重启虚拟机，执行命令，
 
     vagrant reload
     
-4. 用 putty 再登录，检查目录映射是否生效。
+(4). 用 putty 再登录，检查目录映射是否生效。
 
 ### 映射目录中文件的改变，无法自动侦测到
 
@@ -178,6 +190,51 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
 则这个程序可能不能正常工作，侦测不到文件变化了。我在虚拟机中使用 `jekyll s --host 0.0.0.0 --port 8080`
 命令启动 Jekyll，但我在宿主机中修改了映射目录中的文章时，发现 Jekyll 没有侦测到文件变化了。
 这个的确比较麻烦，导致修改文章后，必须手工重启 Jekyll。
+
+## 自动执行脚本
+
+Vagrantfile 中可以配置自动运行脚本，在虚拟机中的系统启动时执行，可以把命令直接写在
+配置项里面，
+
+    config.vm.provision "shell", inline: <<-SHELL
+      echo 'abc' > ~vagrant/abc.txt
+    SHELL
+
+也可以指定文件，文件在宿主机中，
+
+    config.vm.provision :shell, :path => "boot.sh"
+
+boot.sh 内容，
+
+    #!/usr/bin/env bash
+    # PS1="${debian_chroot:+($debian_chroot)}\u@14.04:\w\$"
+    echo 'abc' > ~vagrant/abc.txt    
+    
+注意，只有使用 `vagrant up` 命令或 `vagrant reload` 时，只有虚拟机零下的第一次启动时，脚本才会执行；
+后面执行，都需要加上参数 `--provision`，即 `vagrant up --provision` 和 `vagrant reload --provision`。
+也可以立即执行，使用命令 `vagrant provision` 。
+
+执行 `vagrant provision` 命令时，发现错误信息，
+
+    ==> default: Running provisioner: shell...
+        default: Running: inline script
+    ==> default: stdin: is not a tty
+    
+不过不影响实际执行效果，脚本实际上是成功执行了的。如果有强迫症，网上有人提供了解决办法，
+[http://foo-o-rama.com/vagrant--stdin-is-not-a-tty--fix.html](http://foo-o-rama.com/vagrant--stdin-is-not-a-tty--fix.html)，
+添加一个 shell provision 先执行，
+
+    config.vm.provision "fix-no-tty", type: "shell" do |s|
+      s.privileged = false
+      s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
+    end
+
+实际上，putty 登录后，直接执行也可以，
+
+    sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile
+    
+放在 Vagrantfile 文件中，每次 shell provision 执行时，
+都要执行一次，感觉直接执行命令更好，执行完一次就修复了，没有必要每次都执行。
 
 ## 配置 Linux
 
@@ -195,12 +252,38 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
 ### 安装及更新软件
 
      sudo apt-get upgrade 
-     sudo apt-get install emacs24
-     # sudo apt-get install emacs24 --only-upgrade
-     sudo apt-get install git
-     sudo apt-get install subversion
+     sudo apt-get install -y emacs24 
+     # sudo apt-get install -y emacs24 --only-upgrade
+     sudo apt-get install -y git
+     sudo apt-get install -y subversion
      
-    
+### 解决 .bashrc 没有自动执行问题
+
+在 vagrant 的 HOME 目录下编辑 .bash_profile，在顶部添加
+
+    [ -s ".bashrc" ] && . ".bashrc"
+
+### 修改 SHELL 提示符
+
+BASH 缺省的提示符是这样子的 `vagrant@vagrant-ubuntu-trusty:~/workspace`，
+主机名太长了，直接把主机名固定为 `14.04`，即这个 ubuntu 系统的长期支持版本号。
+
+编辑 .bashrc
+
+    if [ "$color_prompt" = yes ]; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    fi
+
+把代表主机名的转义符 `\h` 变为 `14.04`，
+
+    if [ "$color_prompt" = yes ]; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@14.04\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\u@14.04:\w\$ '
+    fi
+
 # Rials 环境配置
      
 ## 安装 Node.js
@@ -208,12 +291,6 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
 一些 Gem 需要一个 JavaScript 运行环境，安装 Node.js 作为系统的 JS 运行环境， 先安装 nvm，
 
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
-
-将 .bashrc 中的 nvm 程序初始化片断剪切到 .bash_profile 的最后，再重新登录。
-
-    export NVM_DIR="/home/vagrant/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 
 使用 nvm 安装 Node.js
 
@@ -223,6 +300,11 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
     nvm use 0.12.7
     nvm current
     nvm alias default 0.12.7
+
+安装常用的一些 module，
+
+    npm install -g gulp
+    npm install -g bower
      
 ## 安装 rbenv
 
@@ -248,9 +330,43 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
     gem install bundle
     rbenv rehash
     
+# 使用 putty 自动登录
+
+Windows 下，vagrant ssh 是没有办法使用的。登录虚拟机的控制台需要使用 putty，
+缺省地址是 127.0.0.1:2222，但是每次都需要输入用户名密码(vagrant/vagrant)，比较麻烦。
+有一篇文章讲述了自动登录的方法
+[https://github.com/Varying-Vagrant-Vagrants/VVV/wiki/Connect-to-Your-Vagrant-Virtual-Machine-with-PuTTY](https://github.com/Varying-Vagrant-Vagrants/VVV/wiki/Connect-to-Your-Vagrant-Virtual-Machine-with-PuTTY)。
+
+具体步骤是，
+
+(1). 用 [puttygen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+转换 insecure_private_key 文件为 insecure_private_key.ppk 文件。
+
+(2). 使用 putty 登录时，使用这个文件。
+
 # 将当前虚拟机打包为 box
 
+打包为 box 之后，其他地方可以很方便的复用这个虚拟机环境
 
-    
-     
-   
+    vagrant hault
+    vagrant package --output ubuntu-14.04
+
+--output 后面的参数 ubuntu-14.04 为 box 文件名，可自行指定。
+
+# Vagrant 常用命令及注意点
+
+* `vagrant up`，启动
+
+* `vagrant halt`，停止
+
+* `vagrant suspend`，暂时挂起，将虚拟机的状态保存在磁盘上，可以用 `vagrant up` 
+或 `vagrant resume`，重新启动起来，会比停止之后再启动速度快。
+
+* `vagrant status`，查看虚拟机状态
+
+* `vagrant destroy`，销毁虚拟机，一切都没有了，除了虚拟机模板，小心使用
+
+* `vagrant package`，打包当前虚拟机为 box
+
+* 在虚拟机中使用 `sudo reboot` 重启，目录映射不起作用，使用 `vagrant reload` 才行
+
