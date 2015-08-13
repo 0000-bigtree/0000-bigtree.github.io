@@ -27,12 +27,12 @@ Ruby 对 Windows 的支持不太好，主要是使用了 C/C++ 代码的 Gem 对
 
 管理->全局设定->常规，配置默认虚拟机位置为 `E:\virtualbox-vms`，不修改的话，默认会在 C: 盘下。
 
-# 安装 Virgant
+# 安装 Vagrant
 
-从 [Virgant](https://www.vagrantup.com/downloads.html) 下载，当前的最新版本是 1.7.4。
+从 [Vagrant](https://www.vagrantup.com/downloads.html) 下载，当前的最新版本是 1.7.4。
 安装完成后需要重启计算机。
 
-# 配置 Virgant
+# 配置 Vagrant
 
 * 设置 VAGRANT_HOME
 
@@ -46,10 +46,10 @@ Ruby 对 Windows 的支持不太好，主要是使用了 C/C++ 代码的 Gem 对
 
 # 配置并运行一个虚拟机
 
-## 选择 Virgant 镜像
+## 选择 Vagrant 镜像
 
-从 [http://www.vagrantbox.es](http://www.vagrantbox.es) 选择可用的 Virgant 镜像，
-Virgant 镜像是别人已经安装配置好各种软件的虚拟机镜像，适用于各种各样的用途，
+从 [http://www.vagrantbox.es](http://www.vagrantbox.es) 选择可用的 Vagrant 镜像，
+Vagrant 镜像是别人已经安装配置好各种软件的虚拟机镜像，适用于各种各样的用途，
 由于想自己从头开始，来安装配置 Linux下的 Rails 开发环境，所以选择了一个纯净版本的 Ubuntu 版本。
 可以从这里下载 [ubuntu-14.04-amd64.box](https://github.com/kraksoft/vagrant-box-ubuntu/releases/download/14.04/ubuntu-14.04-amd64.box)。
 将下载好的文件放入目录 `E:/vagrant/boxes`。
