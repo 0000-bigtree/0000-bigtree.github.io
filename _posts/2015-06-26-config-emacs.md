@@ -4,7 +4,7 @@ title: "配置 Emacs"
 date: 2015-06-26 15:31:00 +0800
 comments: true
 sharing: false
-categories: 
+categories: emacs
 ---
 
 # Emacs
