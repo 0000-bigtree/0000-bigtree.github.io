@@ -284,7 +284,29 @@ BASH 缺省的提示符是这样子的 `vagrant@vagrant-ubuntu-trusty:~/workspac
     else
         PS1='${debian_chroot:+($debian_chroot)}\u@14.04:\w\$ '
     fi
+    
+### 修改 SHELL 为 ZSH
 
+    sudo apt-get install -y zsh
+    sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" # 安装 Oh My ZSH
+
+修改 .zshrc 文件，修改 theme，
+
+    ZSH_THEME="robbyrussell"
+    
+变为，
+
+    ZSH_THEME="ys"
+
+修改命令行提示中的主机名，
+
+    echo 'ubuntu-14.04' > .box-name
+    
+重启，
+
+    vagrant reload
+    
+    
 # Rials 环境配置
      
 ## 安装 Node.js
