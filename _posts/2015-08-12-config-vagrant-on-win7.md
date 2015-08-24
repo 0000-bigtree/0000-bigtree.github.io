@@ -253,6 +253,9 @@ boot.sh 内容，
 
      sudo apt-get upgrade
      sudo apt-get install -y build-essential
+     sudo apt-get install -y gdb
+     sudo apt-get install -y cmake
+     sudo apt-get install -y zip unzip     
      sudo apt-get install -y emacs24 
      # sudo apt-get install -y emacs24 --only-upgrade
      sudo apt-get install -y git
@@ -308,6 +311,25 @@ BASH 缺省的提示符是这样子的 `vagrant@vagrant-ubuntu-trusty:~/workspac
     
     
 # Rials 环境配置
+
+## 安装 JDK
+
+JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方便，直接安装 JDK。
+当前的最新版本是 [JDK 8u60](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)。
+下载压缩文件 jdk-8u60-linux-x64.tar.gz 后，解压到 ~/coder/java/jdk/jdk，然后在 .zshrc 中添加，
+
+    export JAVA_HOME=/home/vagrant/coder/java/jdk/jdk/
+    export PATH=$JAVA_HOME/bin:$PATH
+    
+## 安装 Ant、Maven及Gradle
+
+分别下载最新的 Ant 1.9.6、Maven 3.3.3 及 Gradle 2.6.0，解压后分别放到 ~/coder/java/ant/ant、
+~/coder/java/maven/maven、~/coder/java/gradle/gradle。
+
+    export ANT_HOME=/home/vagrant/coder/java/ant/ant/
+    export MAVEN_HOME=/home/vagrant/coder/java/maven/maven/
+    export GRADLE_HOME=/home/vagrant/coder/java/gradle/gradle/
+    export PATH=$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin:$PATH    
      
 ## 安装 Node.js
 
@@ -344,15 +366,17 @@ BASH 缺省的提示符是这样子的 `vagrant@vagrant-ubuntu-trusty:~/workspac
     sudo apt-get install -y libsqlite3-dev # for sqlite3 gem
     git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
     rbenv install -l # 查看可用的版本
-    rbenv install 2.2.2 # 安装最新的 2.2.2 版本
+    rbenv install 2.2.3 # 安装最新的 2.2.3 版本
+    rbenv install jruby-1.7.22
+    rbenv install jruby-9.0.0.0
   
 ## 安装必备 Gems
 
     gem sources -l # 查看当前的源
     gem sources -r https://rubygems.org/
     gem sources -a https://ruby.taobao.org/
-    gem update --system
-    gem install bundle
+    gem update --system -N
+    gem install bundle -N
     rbenv rehash
     bundle config 'mirror.https://rubygems.org' 'https://ruby.taobao.org' # 配置 bundle gem 源镜像
     
