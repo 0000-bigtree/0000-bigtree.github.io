@@ -420,3 +420,7 @@ Windows 下，vagrant ssh 是没有办法使用的。登录虚拟机的控制台
 
 * 在虚拟机中使用 `sudo reboot` 重启，目录映射不起作用，使用 `vagrant reload` 才行
 
+# 参考链接
+
+[Using Vagrant for Rails Development](https://gorails.com/guides/using-vagrant-for-rails-development)
+
