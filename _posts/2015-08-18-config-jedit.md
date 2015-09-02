@@ -106,11 +106,15 @@ jEdit.vbs 的内容为，
 ### Plugin Manager
 
 * Preferred download mirror: Asia: Japan Advanced Institute of Science and Technology(Nomi, Japan)
-* Install plugins in: jEdit application directory
+* Install plugins in: jEdit settings directory
 
 ### Saving & Backup
 
 * Backup directory: ~/backup
+
+### Shortcuts
+
+* 选择 keymap 为 Emacs，然后 duplicate，名称为 myEmacs。
 
 ### View
 
@@ -140,5 +144,50 @@ jEdit.vbs 的内容为，
 
 ### DirtyButter
 
+### FTP
+
+### Navigator
+
+* Navigator->Use Navigator's 'go to line' Dialog: check
+
+### ColumnRuler
+
+* Ruler->General->Active by Default: check
+* Show Navigator on toolbar 
+
+### JavaSideKick
+
+### Sessions
+
+### Hex
+
+### SshConsole
+
+### Highlight
+
+### JDiffPlugin
 
 
+# 将配置纳入 git 版本控制
+
+主要是将 JEDIT_HOME 环境变量指向的目录纳入管理，方便共享配置、版本升级和追踪配置变更。
+
+.gitignore 的内容如下，
+
+    etc/jars-cache
+    etc/macros # 宏不放在该目录，而是放在其他地方，链接到该目录下
+    etc/PluginManager.download
+    etc/plugins
+    etc/settings-backup
+    etc/activity.log
+    etc/history
+    etc/killring.xml
+    etc/mirrorList.xml
+    etc/perspective.xml
+    etc/pluginMgr-Cached.xml.gz
+    etc/printspec
+    etc/recent.xml
+    etc/server
+    etc/cache
+    
+    home
