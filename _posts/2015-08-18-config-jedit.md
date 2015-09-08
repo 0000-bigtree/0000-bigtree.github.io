@@ -71,7 +71,6 @@ jEdit.vbs 的内容为，
     #
 
     # Find a java installation.
-
     if [ -z "${JAVA_HOME}" ]; then
         echo 'Warning: $JAVA_HOME environment variable not set! Consider setting it.'
         echo '         Attempting to locate java...'
