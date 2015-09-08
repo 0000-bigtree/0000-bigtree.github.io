@@ -260,6 +260,12 @@ boot.sh 内容，
      sudo apt-get install -y git tig
      sudo apt-get install -y subversion
 
+设置时区，
+
+    more /etc/timezone
+    sudo dpkg-reconfigure tzdata
+
+
 ### 解决 .bashrc 没有自动执行问题
 
 在 vagrant 的 HOME 目录下编辑 .bash_profile，在顶部添加
@@ -289,7 +295,7 @@ BASH 缺省的提示符是这样子的 `vagrant@vagrant-ubuntu-trusty:~/workspac
 
 ### 安装配置 Emacs
 
-    # sudo apt-get install -y python-software-properties software-properties-common # 使命令 add-apt-repository 可用
+    sudo apt-get install -y python-software-properties software-properties-common # 使命令 add-apt-repository 可用
     # sudo add-apt-repository ppa:cassou/emacs
     # sudo apt-get update
     # sudo apt-get install emacs24 emacs24-el emacs24-common-non-dfsg
@@ -306,11 +312,16 @@ BASH 缺省的提示符是这样子的 `vagrant@vagrant-ubuntu-trusty:~/workspac
     sudo make install
 
 使用 Emacs Preclude，
-    
+
     cd ~
     git clone git://github.com/bbatsov/prelude.git ~/prelude
     rm -rf .emacs.d
     ln -s ~/prelude ~/.emacs.d
+
+配置 .bashrc 或 .zshrc
+
+    export TERM=xterm-256color
+
 
 ### 修改 SHELL 为 ZSH
 
