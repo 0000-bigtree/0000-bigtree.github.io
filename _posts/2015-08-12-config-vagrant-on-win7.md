@@ -11,10 +11,10 @@ Ruby 对 Windows 的支持不太好，主要是使用了 C/C++ 代码的 Gem 对
 在 Windows 下安装这些 Gem 时，能在当前计算机上正确编译这些 C/C++ 代码是一件艰难的事。
 所以在 Windows 下开发 Rails 是一件很折腾人的事。
 但是如果工作环境限定了要使用 Windows，可以用虚拟机的方式。简单来说就是在 Windows 上安装
-虚拟机软件，在虚拟机安装 Linux，使用这个 Linux 来作为 Rails 的开发环境。 
+虚拟机软件，在虚拟机安装 Linux，使用这个 Linux 来作为 Rails 的开发环境。
 而 Vagrant 是让使用这个虚拟机环境更加方便的工具。
 
-# 安装 VirtualBox 
+# 安装 VirtualBox
 
 从 [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 下载，当前的最新版本是 5.0。
 除了下载虚拟机外，还要下载对应虚拟机版本的扩展包(Extension Pack)。
@@ -41,8 +41,8 @@ Ruby 对 Windows 的支持不太好，主要是使用了 C/C++ 代码的 Gem 对
 执行下面的命令来设置 VAGRANT_HOME 到特定的位置。
 
     SETX VAGRANT_HOME "E:\vagrant\.vagrant.d"
-    
-执行行这个命令后，需要重启控制台生效。    
+
+执行行这个命令后，需要重启控制台生效。
 
 # 配置并运行一个虚拟机
 
@@ -58,12 +58,12 @@ Vagrant 镜像是别人已经安装配置好各种软件的虚拟机镜像，适
 
     cd E:/vagrant/boxes
     vagrant box add base ubuntu-14.04-amd64.box
-    
+
 上面的命令中，
 base 表示指定默认的 box，也可以为 box 指定名称，如 rails，使用 base 这个名称时，
 后面可以直接使用 vagrant init 进行初始化，如果自定义名称，初始化的时候需要指定 box 的名称。
 ubuntu-14.04-amd64.box 是 box 对应的文件名，这里可以是本地保存 box 的路径，
-也可以是可以下载 box 的网址，如果是网址的话，Vagrant 会自动启动下载。    
+也可以是可以下载 box 的网址，如果是网址的话，Vagrant 会自动启动下载。
 
 命令输出如下：
 
@@ -134,7 +134,7 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
 当然也可以在通过 ln 创建软连接，如，
 
     ln -fs /vagrant/www /var/www
-    
+
 -f 表示 强制创建，如果目标文件已存在，会覆盖， -s 为软链接。
 但是一般来说，不建议在虚拟机里面对外部的条件依赖过多，把虚拟机打包为 box 时，
 有可能会导致以这个 box 为模板的、新建的虚拟机环境不能正常工作。
@@ -156,7 +156,7 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
     Failed to mount folders in Linux guest. This is usually because
     the "vboxsf" file system is not available. Please verify that
     the guest additions are properly installed in the guest and
-    
+
 配置的共享目录，在进入 linux 虚拟机后，也不能发现，google 一番，发现是 VBoxGuestAdditions 没有
 在虚拟机中安装。
 
@@ -165,7 +165,7 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
 (1). 先启动虚拟机，执行命令，
 
     vagrant up
-    
+
 启动完成后，在宿主机中运行 VirtualBox.exe，在 VirtualBox 管理器中看到正在运行的虚拟机。
 给这个虚拟机设置虚拟光盘为 VBoxGuestAdditions.iso 文件。VBoxGuestAdditions.iso 文件
 在 VirtualBox 的安装目录下。
@@ -181,7 +181,7 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
 (3). 重启虚拟机，执行命令，
 
     vagrant reload
-    
+
 (4). 用 putty 再登录，检查目录映射是否生效。
 
 ### 映射目录中文件的改变，无法自动侦测到
@@ -208,8 +208,8 @@ boot.sh 内容，
 
     #!/usr/bin/env bash
     # PS1="${debian_chroot:+($debian_chroot)}\u@14.04:\w\$"
-    echo 'abc' > ~vagrant/abc.txt    
-    
+    echo 'abc' > ~vagrant/abc.txt
+
 注意，只有使用 `vagrant up` 命令或 `vagrant reload` 时，只有虚拟机零下的第一次启动时，脚本才会执行；
 后面执行，都需要加上参数 `--provision`，即 `vagrant up --provision` 和 `vagrant reload --provision`。
 也可以立即执行，使用命令 `vagrant provision` 。
@@ -219,7 +219,7 @@ boot.sh 内容，
     ==> default: Running provisioner: shell...
         default: Running: inline script
     ==> default: stdin: is not a tty
-    
+
 不过不影响实际执行效果，脚本实际上是成功执行了的。如果有强迫症，网上有人提供了解决办法，
 [http://foo-o-rama.com/vagrant--stdin-is-not-a-tty--fix.html](http://foo-o-rama.com/vagrant--stdin-is-not-a-tty--fix.html)，
 添加一个 shell provision 先执行，
@@ -232,7 +232,7 @@ boot.sh 内容，
 实际上，putty 登录后，直接执行也可以，
 
     sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile
-    
+
 放在 Vagrantfile 文件中，每次 shell provision 执行时，
 都要执行一次，感觉直接执行命令更好，执行完一次就修复了，没有必要每次都执行。
 
@@ -247,7 +247,7 @@ boot.sh 内容，
     wget http://mirrors.163.com/.help/sources.list.trusty
     mv sources.list.trusty sources.list
     sudo apt-get update
-    
+
 
 ### 安装及更新软件
 
@@ -255,12 +255,11 @@ boot.sh 内容，
      sudo apt-get install -y build-essential
      sudo apt-get install -y gdb
      sudo apt-get install -y cmake
-     sudo apt-get install -y zip unzip     
-     sudo apt-get install -y emacs24 
-     # sudo apt-get install -y emacs24 --only-upgrade
-     sudo apt-get install -y git
+     sudo apt-get install -y zip unzip
+     sudo apt-get install -y vim --only-upgrade
+     sudo apt-get install -y git tig
      sudo apt-get install -y subversion
-     
+
 ### 解决 .bashrc 没有自动执行问题
 
 在 vagrant 的 HOME 目录下编辑 .bash_profile，在顶部添加
@@ -287,7 +286,32 @@ BASH 缺省的提示符是这样子的 `vagrant@vagrant-ubuntu-trusty:~/workspac
     else
         PS1='${debian_chroot:+($debian_chroot)}\u@14.04:\w\$ '
     fi
+
+### 安装配置 Emacs
+
+    # sudo apt-get install -y python-software-properties software-properties-common # 使命令 add-apt-repository 可用
+    # sudo add-apt-repository ppa:cassou/emacs
+    # sudo apt-get update
+    # sudo apt-get install emacs24 emacs24-el emacs24-common-non-dfsg
+    # sudo add-apt-repository --remove ppa:cassou/emacs
+    # sudo apt-get update
+
+找了几个源，都没有 Emacs 的最新版本，只能从源码来安装 Emacs，当前 Emacs 的最新版本是 24.5，
+
+    cd ~
+    wget http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.5.tar.gz
+    cd emacs-24.5
+    ./configure
+    make
+    sudo make install
+
+使用 Emacs Preclude，
     
+    cd ~
+    git clone git://github.com/bbatsov/prelude.git ~/prelude
+    rm -rf .emacs.d
+    ln -s ~/prelude ~/.emacs.d
+
 ### 修改 SHELL 为 ZSH
 
     sudo apt-get install -y zsh
@@ -296,7 +320,7 @@ BASH 缺省的提示符是这样子的 `vagrant@vagrant-ubuntu-trusty:~/workspac
 修改 .zshrc 文件，修改 theme，
 
     ZSH_THEME="robbyrussell"
-    
+
 变为，
 
     ZSH_THEME="ys"
@@ -304,12 +328,12 @@ BASH 缺省的提示符是这样子的 `vagrant@vagrant-ubuntu-trusty:~/workspac
 修改命令行提示中的主机名，
 
     echo 'ubuntu-14.04' > .box-name
-    
+
 重启，
 
     vagrant reload
-    
-    
+
+
 # Rials 环境配置
 
 ## 安装 JDK
@@ -320,7 +344,7 @@ JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方�
 
     export JAVA_HOME=/home/vagrant/coder/java/jdk/jdk/
     export PATH=$JAVA_HOME/bin:$PATH
-    
+
 ## 安装 Ant、Maven及Gradle
 
 分别下载最新的 Ant 1.9.6、Maven 3.3.3 及 Gradle 2.6.0，解压后分别放到 ~/coder/java/ant/ant、
@@ -329,8 +353,8 @@ JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方�
     export ANT_HOME=/home/vagrant/coder/java/ant/ant/
     export MAVEN_HOME=/home/vagrant/coder/java/maven/maven/
     export GRADLE_HOME=/home/vagrant/coder/java/gradle/gradle/
-    export PATH=$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin:$PATH    
-     
+    export PATH=$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin:$PATH
+
 ## 安装 Node.js
 
 一些 Gem 需要一个 JavaScript 运行环境，安装 Node.js 作为系统的 JS 运行环境， 先安装 nvm，
@@ -350,15 +374,15 @@ JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方�
 
     npm install -g gulp
     npm install -g bower
-     
+
 ## 安装 rbenv
 
     git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
     echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
     echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-    sudo reboot 
+    sudo reboot
     type rbenv # 验证安装是否成功
-    
+
 ## 安装 ruby-build
 
     sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
@@ -369,7 +393,7 @@ JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方�
     rbenv install 2.2.3 # 安装最新的 2.2.3 版本
     rbenv install jruby-1.7.22
     rbenv install jruby-9.0.0.0
-  
+
 ## 安装必备 Gems
 
     gem sources -l # 查看当前的源
@@ -379,7 +403,7 @@ JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方�
     gem install bundle -N
     rbenv rehash
     bundle config 'mirror.https://rubygems.org' 'https://ruby.taobao.org' # 配置 bundle gem 源镜像
-    
+
 # 使用 putty 自动登录
 
 Windows 下，vagrant ssh 是没有办法使用的。登录虚拟机的控制台需要使用 putty，
@@ -409,7 +433,7 @@ Windows 下，vagrant ssh 是没有办法使用的。登录虚拟机的控制台
 
 * `vagrant halt`，停止
 
-* `vagrant suspend`，暂时挂起，将虚拟机的状态保存在磁盘上，可以用 `vagrant up` 
+* `vagrant suspend`，暂时挂起，将虚拟机的状态保存在磁盘上，可以用 `vagrant up`
 或 `vagrant resume`，重新启动起来，会比停止之后再启动速度快。
 
 * `vagrant status`，查看虚拟机状态
@@ -423,4 +447,3 @@ Windows 下，vagrant ssh 是没有办法使用的。登录虚拟机的控制台
 # 参考链接
 
 [Using Vagrant for Rails Development](https://gorails.com/guides/using-vagrant-for-rails-development)
-
