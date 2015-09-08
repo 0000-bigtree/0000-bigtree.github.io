@@ -21,7 +21,7 @@ categories: jEdit
 选择安装目录为 `D:\workspace\coder\java\jEdit\jEdit-5.2.0`。
 
 # 配置
-                                        
+
 ## 目录结构
 
 在目录 `D:\workspace\coder\java\jEdit` 下新建目录 `jEdit\bin`、`jEdit\home`、`jEdit\etc`。
@@ -58,12 +58,42 @@ jEdit.vbs 的内容为，
 内容跟刚才新建的、名称为  `new` 的串值相同。(7) 名称为 `new` 的串值已经不再需要，删除它。
 
 执行命令，设置用户变量 `JEDIT_HOME` 的值，
-                                        
+
     SETX JEDIT_HOME D:\workspace\coder\java\jEdit\jEdit
 
 修改用户的 `Path` 变量，附加 `%JEDIT_HOME%\bin;`。
 
 ## OS X 启动脚本
+
+    #!/bin/sh
+    #
+    # Runs jEdit - Programmer's Text Editor.
+    #
+
+    # Find a java installation.
+
+    if [ -z "${JAVA_HOME}" ]; then
+        echo 'Warning: $JAVA_HOME environment variable not set! Consider setting it.'
+        echo '         Attempting to locate java...'
+        j=`which java 2>/dev/null`
+        if [ -z "$j" ]; then
+            echo "Failed to locate the java virtual machine! Bailing..."
+            exit 1
+        else
+            echo "Found a virtual machine at: $j..."
+            JAVA="$j"
+        fi
+    else
+        JAVA="${JAVA_HOME}/bin/java"
+    fi
+
+    # Launch application.
+    exec "${JAVA}" -Duser.home=$JEDIT_HOME/home -jar "${JEDIT_HOME}/../jEdit-${JEDIT_VER}/jedit.jar" -settings=$JEDIT_HOME/etc -background-reuseview "$@"
+
+
+启动 jEdit，
+
+    export set JEDIT_HOME=~/workspace/coder/java/jEdit/jEdit; export set JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_55.jdk/Contents/Home/jre; export set JEDIT_VER=5.2.0; . $JEDIT_HOME/bin/jedit.sh
 
 ## 全局配置
 
@@ -80,7 +110,7 @@ jEdit.vbs 的内容为，
 * Experimental options->Use jEdit text area colors in all text components: check
 * Draw dialog box borders using Swing look & feel: check
 
-### Editing 
+### Editing
 
 * Separate "CamelCased" words: check
 * Tab width: 2
@@ -153,7 +183,7 @@ jEdit.vbs 的内容为，
 ### ColumnRuler
 
 * Ruler->General->Active by Default: check
-* Show Navigator on toolbar 
+* Show Navigator on toolbar
 
 ### JavaSideKick
 
@@ -189,5 +219,5 @@ jEdit.vbs 的内容为，
     etc/recent.xml
     etc/server
     etc/cache
-    
+
     home

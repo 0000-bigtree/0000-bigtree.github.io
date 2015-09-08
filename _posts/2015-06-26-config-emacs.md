@@ -86,3 +86,19 @@ basic.el 的内容为，
 安装 adoc-mode(M-x package-install adoc-mode)，
 安装 color-theme(M-x package-install color-theme)，
 安装 color-theme-solarized(M-x package-install color-theme-solarized)。
+
+# OS X 版本及配置
+
+OS X 下有 Homebrew，比较方便，
+
+    brew tap caskroom/cask/brew-cask && brew install brew-cask
+    # brew untap caskroom/cask/brew-cask
+    brew cask install emacs
+
+参考　Windows 的配置，把 Emacs Prelude 克隆到 ~/.emacs.d，并安装相关的功能。
+
+注意，在终端下运行 emacs，需要以下命令，
+
+    export TERM=xterm-256color &&  ~/Applications/Emacs.app/Contents/MacOS/Emacs -nw "$@"
+
+# Linux 版本及配置(ubuntu 14.04)
