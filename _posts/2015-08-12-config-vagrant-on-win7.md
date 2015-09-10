@@ -256,6 +256,7 @@ boot.sh 内容，
      sudo apt-get install -y gdb
      sudo apt-get install -y cmake
      sudo apt-get install -y zip unzip
+     sudo apt-get install -y aspell
      sudo apt-get install -y vim --only-upgrade
      sudo apt-get install -y git tig
      sudo apt-get install -y subversion
@@ -398,7 +399,7 @@ JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方�
 
     sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
     sudo apt-get install -y libmysqlclient-dev # for mysql2 gem
-    sudo apt-get install -y libsqlite3-dev # for sqlite3 gem
+    sudo apt-get install -y sqlite3 libsqlite3-dev # for sqlite3 gem
     git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
     rbenv install -l # 查看可用的版本
     rbenv install 2.2.3 # 安装最新的 2.2.3 版本
