@@ -6,7 +6,9 @@ comments: true
 sharing: false
 categories: SQLite SQLite3
 ---
-# 安装(Ubuntu 14.04)
+# 安装
+
+## Ubuntu 14.04 下安装
 
     sudo apt-get install -y sqlite3 libsqlite3-dev
 
