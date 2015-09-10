@@ -196,6 +196,8 @@ jEdit.vbs 的内容为，
 
 ### JDiffPlugin
 
+### Mac OS X Support
+
 
 # 将配置纳入 git 版本控制
 
