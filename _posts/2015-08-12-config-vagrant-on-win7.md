@@ -354,7 +354,7 @@ JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方�
 当前的最新版本是 [JDK 8u60](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)。
 下载压缩文件 jdk-8u60-linux-x64.tar.gz 后，解压到 ~/coder/java/jdk/jdk，然后在 .zshrc 中添加，
 
-    export JAVA_HOME=/home/vagrant/coder/java/jdk/jdk/
+    export JAVA_HOME=/home/vagrant/coder/java/jdk/jdk
     export PATH=$JAVA_HOME/bin:$PATH
 
 ## 安装 Ant、Maven及Gradle
@@ -362,9 +362,9 @@ JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方�
 分别下载最新的 Ant 1.9.6、Maven 3.3.3 及 Gradle 2.6.0，解压后分别放到 ~/coder/java/ant/ant、
 ~/coder/java/maven/maven、~/coder/java/gradle/gradle。
 
-    export ANT_HOME=/home/vagrant/coder/java/ant/ant/
-    export MAVEN_HOME=/home/vagrant/coder/java/maven/maven/
-    export GRADLE_HOME=/home/vagrant/coder/java/gradle/gradle/
+    export ANT_HOME=/home/vagrant/coder/java/ant/ant
+    export MAVEN_HOME=/home/vagrant/coder/java/maven/maven
+    export GRADLE_HOME=/home/vagrant/coder/java/gradle/gradle
     export PATH=$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin:$PATH
 
 ## 安装 Node.js
