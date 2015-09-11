@@ -84,8 +84,7 @@ basic.el 的内容为，
 打开 md 文件，自动安装 Markdown 支持，
 打开 yaml 或 yml 文件，自动安装 YAML 支持，
 安装 adoc-mode(M-x package-install adoc-mode)，
-安装 color-theme(M-x package-install color-theme)，
-安装 color-theme-solarized(M-x package-install color-theme-solarized)。
+安装 color-theme，color-theme-solarized，monokai-theme。
 
 # OS X 版本及配置
 
