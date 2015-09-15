@@ -101,3 +101,7 @@ OS X 下有 Homebrew，比较方便，
     export TERM=xterm-256color &&  ~/Applications/Emacs.app/Contents/MacOS/Emacs -nw "$@"
 
 # Linux 版本及配置(ubuntu 14.04)
+
+# Markdown Mode
+
+有一篇[介绍文章](http://jblevins.org/projects/markdown-mode/)
