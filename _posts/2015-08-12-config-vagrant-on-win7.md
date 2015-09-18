@@ -256,6 +256,7 @@ boot.sh 内容，
      sudo apt-get install -y gdb
      sudo apt-get install -y cmake
      sudo apt-get install -y zip unzip
+     sudo apt-get install -y rar unrar
      sudo apt-get install -y aspell
      sudo apt-get install -y vim --only-upgrade
      sudo apt-get install -y git tig

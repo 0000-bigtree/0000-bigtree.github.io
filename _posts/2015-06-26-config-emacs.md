@@ -105,3 +105,7 @@ OS X 下有 Homebrew，比较方便，
 # Markdown Mode
 
 有一篇[介绍文章](http://jblevins.org/projects/markdown-mode/)
+
+# Rails
+
+[configuring-emacs-for-rails)(http://lorefnon.me/2014/02/02/configuring-emacs-for-rails.html)
