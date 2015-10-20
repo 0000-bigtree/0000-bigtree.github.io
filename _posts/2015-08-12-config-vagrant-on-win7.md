@@ -378,10 +378,10 @@ JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方�
 
     nvm ls # 查看已安装，类似于 rbenv versions
     nvm ls-remote # 查看可安装版本，类似于 rbenv install -l
-    nvm install 0.12.7
-    nvm use 0.12.7
+    NVM_NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node nvm install 4.2.1
+    nvm use 4.2.1
     nvm current
-    nvm alias default 0.12.7
+    nvm alias default 4.2.1
 
 安装常用的一些 module，
 
