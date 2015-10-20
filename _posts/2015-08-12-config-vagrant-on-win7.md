@@ -385,7 +385,10 @@ JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方�
 
 安装常用的一些 module，
 
+    npm config set registry https://registry.npm.taobao.org # 使用淘宝源，加快速度
+    npm install -g npm # 升级 npm
     npm install -g gulp
+    npm install -g grunt
     npm install -g bower
 
 ## 安装 rbenv
