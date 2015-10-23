@@ -261,6 +261,9 @@ boot.sh 内容，
      sudo apt-get install -y vim --only-upgrade
      sudo apt-get install -y git tig
      sudo apt-get install -y subversion
+     sudo apt-get install python-dev
+     sudo apt-get install python-pip
+     sudo pip install pip --upgrade
 
 设置时区，
 
