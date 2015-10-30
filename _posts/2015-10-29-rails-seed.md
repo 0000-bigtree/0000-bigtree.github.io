@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "在 Rails 项目中如何配置缺省数据"
+title: "在 Rails 项目中使用预制数据"
 date: 2015-10-29 18:00:00 +0800
 comments: true
 sharing: false
