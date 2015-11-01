@@ -15,6 +15,10 @@ categories: react javascript android osx react-native
 
     brew install android-sdk
 
+编辑 .zshrc，添加
+
+    export ANDROID_HOME=/usr/local/opt/android-sdk
+
 安装完成之后，输入命令，
 
     android
@@ -25,4 +29,4 @@ categories: react javascript android osx react-native
 
     react-native run-android
 
-会启动 JS Server，并运行 gradle 命令(自动安装 Gradle 2.4)
+会启动 JS Server，并运行 gradle 命令(自动安装 Gradle 2.4)。
