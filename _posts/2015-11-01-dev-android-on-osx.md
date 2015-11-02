@@ -43,6 +43,12 @@ categories: react javascript android osx react-native
 
 选择所需要的组件安装，整个安装需要比较长的时间，如果你的网络速度不是很好的话，更需要耐心一点，下载安装完成后，添加环境变量 ANDROID_HOME，值为 C:\Program Files (x86)\Android\android-sdk。
 
+## 安装 NDK(可选)
+
+## 安装 Genymotion
+
+[Genymotion](https://www.genymotion.com/#!/) 是一个虚拟设备模拟器，对于个人使用是免费的。比 Google 的模拟器要方便快捷。
+
 ## 安装 Node 及 npm
 
 略，使用 node 4.2.1 及 npm 3.3.10
@@ -57,11 +63,23 @@ categories: react javascript android osx react-native
 
 ## 运行示例
 
+### 使用真实设备运行
+
 先把手机通过 USB 线连接好，打开 USB 调试，再执行如下命令，
 
     cd helloReactNative
     react-native run-android
+    react-native start
 
 会自动安装 Gradle 2.4，并自动下载依赖的 jar 包，编译成功后，自动把应用安装到手机上。
 
 安装成功后，在手机上会启动应用，但会是一片空白，什么都没有显示，解决办法，根据 [这个链接](http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0916/3467.html) 解决问题。
+
+### 使用 Genymotion 模拟器
+
+登录 Genymotion 并下载一个模拟器镜像，启动镜像。
+
+    react-native run-android
+    react-native start
+
+安装好的应用会自动在模拟器上运行。
