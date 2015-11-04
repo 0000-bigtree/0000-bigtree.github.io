@@ -4,7 +4,7 @@ title: "React Native for Android 开发环境搭建"
 date: 2015-11-01 23:59:59 +0800
 comments: true
 sharing: false
-categories: react javascript android osx react-native
+categories: react javaScript android osx react-native
 ---
 
 [React Native](https://github.com/facebook/react-native) 0.11.0 就已经开始支持 Android 了，但 Facebook 开始只支持在 OSX 平台来开发，0.13.0-rc 之后，终于支持 Windows 了。
