@@ -110,8 +110,8 @@ OS X 下有 Homebrew，比较方便，
 
 ## Rails
 
-[configuring-emacs-for-rails)(http://lorefnon.me/2014/02/02/configuring-emacs-for-rails.html)
+[configuring-emacs-for-rails](http://lorefnon.me/2014/02/02/configuring-emacs-for-rails.html)
 
 ## 设置 HTTP 代理
 
-(setenv "http_proxy" "http://183.11.147.211:9000")
+    (setenv "http_proxy" "http://183.11.147.211:9000")
