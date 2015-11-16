@@ -102,10 +102,16 @@ OS X 下有 Homebrew，比较方便，
 
 # Linux 版本及配置(ubuntu 14.04)
 
-# Markdown Mode
+# 技巧
+
+## Markdown Mode
 
 有一篇[介绍文章](http://jblevins.org/projects/markdown-mode/)
 
-# Rails
+## Rails
 
 [configuring-emacs-for-rails)(http://lorefnon.me/2014/02/02/configuring-emacs-for-rails.html)
+
+## 设置 HTTP 代理
+
+(setenv "http_proxy" "http://183.11.147.211:9000")
