@@ -145,8 +145,29 @@ Github上的README已经有很详细的安装方法，按照文档所述的步�
 
 [emacs-eclim](https://github.com/senny/emacs-eclim)
 
-##
-Markdown
+快捷键
+
+* 打开.spacemacs SPC f e d
+* EVAL .spacemacs SPC f e R
+
+* 最近打开文件 SPC f r
+
+* Helm-swoop开始(区分范围) SPC s S
+* Helm-swoop开始(不区分范围) SPC s s
+* Helm-swoop 进入编辑模式 C-c C-e
+* Helm-resume SPC h l
+
+* 查找工程中的文件 SPC p f
+* 查找工程中的目录 SPC p d
+* 打开工程的根目录 SPC p D
+
+* 转到定义 SPC m g g
+* 转到当前buffer内的函数/方法 SPC s l
+* 显示错误 SPC m e b
+* 跳到后一个错误 SPC m e n
+* 跳到前一个错误 SPC m e p
+
+## Markdown
 
 * 中文跟英文混合的时候，中文和英文之间会自动加上空格。这个实在是太方便了！
 
