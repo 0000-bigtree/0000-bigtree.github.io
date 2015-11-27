@@ -167,6 +167,52 @@ Github上的README已经有很详细的安装方法，按照文档所述的步�
 * 跳到后一个错误 SPC m e n
 * 跳到前一个错误 SPC m e p
 
+## 文本操作
+
+* copy-and-comment-lines，SPC c y
+* comment-or-uncomment-line，SPC c l
+* kill-line，C+k
+* avy-copy-line
+* move down a line of text (enter micro-state)，SPC x J，M+UpArrow
+* move up a line of text (enter micro-state)，SPC x K，M+DownArrow
+* swap (transpose) the current line with the previous one，SPC x t l
+
+## frame 操作
+
+* 最大化frame，SPC T M
+* 全屏 frame, SPC T F
+* 切换透明效果，SPC T T
+* 切换末尾的波浪线(仿VIM)，SPC T f
+* 切theme，SPC T h
+
+# buffer 操作
+
+* next-buffer，下一个窗口，C+x C+->
+* previous-buffer，前一个buffer，C+x C+<-
+* 只读模式，SPC b w
+* 将当前buffer内容替换为剪贴板内容，SPC b P
+* 复制当前buffer内容到剪贴板，SPC b Y
+* 显示当前打开的buffer，SPC b b
+* 跳转到spacemace Home buffer，SPC b h
+* kill other buffers，SPC b K
+
+## window操作
+
+* other-window，跳转到下一个窗口，C+x o
+* split-window-below，纵向分割窗口，C+x 2
+* split-window-right，横向分割窗口，C+x 3
+* spacemacs/toggle-maximize-buffer，最大化当前窗口，C+x 1
+* delete-window，关闭当前窗口，C+x 0
+* enlarge-window，扩大当前窗口纵向，C-x ^
+* shrink-window，缩小当前窗口纵向
+* enlarge-window-horizontally，扩大当前窗口横向，C+x }
+* shrink-window-horizontally，缩小当前窗口横向，C+x {
+* balance-windows，使各个窗口一样大，C+x +
+* shrink-window-if-larger-than-buffer，使窗口大小与内容匹配，C+x -
+* spacemacs/rotate-window，调换窗口，SPC w R
+* ace-window，切换窗口，SPC w SPC
+* spacemacs窗口操作前缀，SPC w
+
 ## Markdown
 
 * 中文跟英文混合的时候，中文和英文之间会自动加上空格。这个实在是太方便了！
