@@ -1,10 +1,10 @@
 ---
-LAYOUT: POST
-TITLE: "GDT WITH ORG MODE"
-DATE: 2015-11-30 23:00:00 +0800
-COMMENTS: TRUE
-SHARING: FALSE
-CATEGORIES: EMACS ORG-MODE GDT
+layout: post
+title: "GDT with Org mode"
+date: 2015-11-30 23:00:00 +0800
+comments: true
+sharing: false
+categories: emacs org-mode GDT
 ---
 
 # 什么是GDT
