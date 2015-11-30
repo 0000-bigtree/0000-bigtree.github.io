@@ -213,6 +213,14 @@ Github上的README已经有很详细的安装方法，按照文档所述的步�
 * ace-window，切换窗口，SPC w SPC
 * spacemacs窗口操作前缀，SPC w
 
+## frame 操作
+
+* make-frame，C-x 5 2，make-frame，Emacs will make a new frame containing the current buffer
+* other-frame，C-x 5 o，move between Frames
+* delete-frame，C-x 5 0，delete frame
+* ido-find-file-other-fram，C-x 5 f，打开一个文件在新的frame
+* switch-to-buffer-other-frame，C-x 5 b，swith to buffer other frame
+
 ## Markdown
 
 * 中文跟英文混合的时候，中文和英文之间会自动加上空格。这个实在是太方便了！
