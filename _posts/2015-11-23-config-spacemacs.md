@@ -6,6 +6,7 @@ comments: true
 sharing: false
 categories: emacs
 ---
+
 # Emacs and spacemacs
 
 程序员手中的文本编辑器，到最后阶段，一般都会选择 [Emacs](http://www.gnu.org/software/emacs/emacs.html) 或 [vim](http://www.vim.org/)，我选择的是 emacs。
@@ -29,6 +30,7 @@ emacs 的功能众多和扩展定制麻烦，导致上手困难，即使对于�
 * 高度兼容 vim 操作习惯。
 
 # Windows 版本及配置
+
 ## 安装 Emacs
 
 当前的官方最新版本是 [24.5](https://ftp.gnu.org/gnu/emacs/windows/emacs-24.5-bin-i686-mingw32.zip)，
@@ -87,6 +89,7 @@ emacs 会读取 HOME 系统变量，作为自己的主目录。启动 emacs 时�
 [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) 是 Adobe 开源的等宽字体，spacemacs 缺省使用了它。大家都说好，但我觉得在 Windows 上效果不怎么样，在 OSX 上，看起来的确是不错的。
 
 Github上的README已经有很详细的安装方法，按照文档所述的步骤，下载对应操作系统的安装文件安装即可。
+
 ## .spacemacs 文件
 
 这个文件是 spacemacs 的主要配置文件，相关的 spacemacs 都可以在这里找到。spacemacs 第一次启动时，会按照模板，自动在 $HOME 中生成这个文件。并且会提示你选择 vim 风格或 emacs 风格。vim 风格会使用与 vim 相似的操作习惯。如果使用了 vim 风格，则其 Leader key 会是 SPC，即空格键，而选择了 emacs 风格，其 Leader key 会是 M-m。Leader key 是指按键序列中的第一次按键。其实在 .spacemacs 中需要配置的地方不多，主要有：
@@ -170,7 +173,7 @@ Github上的README已经有很详细的安装方法，按照文档所述的步�
                                 :powerline-scale 1.1)
      ...
 
-### 自定义制初始化
+### 自定义初始化
 
     ...
     (defun dotspacemacs/user-config ()
@@ -182,16 +185,19 @@ Github上的README已经有很详细的安装方法，按照文档所述的步�
       ...
 
 这个地方的代码可以用来配置各个扩展包的特性。如果这些配置没有包含在 spacemace 中的话。
-    
-
-
 
 ## 自定义层
+
 # OSX 版本及配置
+
 # Linux 版本及配置
+
 # 通用特性
+
 ## 文本操作
+
 ### 行
+
 * copy-and-comment-lines，SPC c y
 * comment-or-uncomment-line，SPC c l
 * kill-line，C+k
@@ -240,8 +246,8 @@ Github上的README已经有很详细的安装方法，按照文档所述的步�
 * ido-find-file-other-fram，C-x 5 f，打开一个文件在新的frame
 * switch-to-buffer-other-frame，C-x 5 b，swith to buffer other frame
 
-## frame 操作
 ## 其他
+
 * 最大化frame，SPC T M
 * 全屏 frame, SPC T F
 * 切换透明效果，SPC T T
@@ -251,15 +257,15 @@ Github上的README已经有很详细的安装方法，按照文档所述的步�
 
 # Java
 
-## jdee
+## JDEE
 
 [JDEE](https://github.com/jdee-emacs/jdee)，以前比较好的一套插件，但很长时间没有更新，把代码库迁移到Github后，现在处于reborn状态，但目前进展比较缓慢，按照它的RoadMap，是要支持Maven、Gradle的，保留期待。
 
 ## emacs-eclim
 
-[eclim 介绍](http://www.emacswiki.org/emacs/EmacsEclim)
+可以看 [eclim 介绍](http://www.emacswiki.org/emacs/EmacsEclim) 文章。
 
-[eclim github](https://github.com/senny/emacs-eclim)
+项目地址为，[eclim github](https://github.com/senny/emacs-eclim)。
 
 ### eclipse
 
