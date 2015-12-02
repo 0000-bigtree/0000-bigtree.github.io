@@ -321,6 +321,6 @@ d0，切换为 10 进制；d6，切换为 16 进制；d2，切换为二进制；
 
 缺省输入的数都是 10 进制，如果输入的数是当前数制，使用 `#` 开头。
 
-[手册](http://www.delorie.com/gnu/docs/calc/calc.html)
+[手册](http://www.delorie.com/gnu/docs/calc/calc.html)  
 [说明](http://emacser.com/calc.htm)
 
