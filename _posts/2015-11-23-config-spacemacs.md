@@ -29,6 +29,8 @@ emacs 的功能众多和扩展定制麻烦，导致上手困难，即使对于�
 * 外观漂亮。
 * 高度兼容 vim 操作习惯。
 
+这里有一个技巧收集网站，[Spacemacs Rocks](http://spacemacs.brianthicks.com/)。
+
 # Windows 版本及配置
 
 ## 安装 Emacs
