@@ -66,21 +66,21 @@ categories: emacs "Org mode" ruby
 # 添加一个Ruby代码块
 
 在org文档中添加一个 ruby 代码块如下，
-    
+
     #+NAME: snippet:basic_ruby
     #+CAPTION: Ruby 基本语句
-    #+BEGIN_SRC ruby -n -i :exports code
-    puts 'hello ruby' (ref:puts)
-    80.times {puts '*'} 
-    # this is single comment (ref:singlelinecomment)
+    #+BEGIN_SRC ruby -n -i -r :exports code
+    puts 'hello ruby' # (ref:puts)
+    80.times {puts '*'} # (ref:loop)
+    '*' * 80
+    # this is single comment  # (ref:singlelinecomment)
     =begin
     multi line
       comment
     =end
     #+END_SRC
     
-    这行是[[(puts)][打印语句]]，这行是[[(singlelinecomment)][单行注释]]
-        
+    这行是[[(puts)][打印语句]]，这行是[[(singlelinecomment)][单行注释]]，这行是[[(loop)][循环]]。
         
 ruby代码为 `#+BEGIN_SRC`到`#END_SRC`之间的文本。
 
@@ -92,7 +92,15 @@ ruby代码为 `#+BEGIN_SRC`到`#END_SRC`之间的文本。
 
 在临时buffer中，还可以使用`C-c l`来对各行添加引用，会生成格式如`(ref:xxx)`的引用，`xxx`为emacs会提示你输出的引用名。这些引用会保存起来，在后面的org文档写作中，可用使用`C-c C-l`来方便地插入这些引用。
 
+## 执行
+
+在代码块中按`C-c C-c`，emacs提示后，可以执行代码。代码执行的结果会添加到到着代码块的下面，例如，上面ruby代码块的输出结果为，
+
+    #+RESULTS:
+    : ********************************************************************************
+
 ## 导出
 
 Org mode提供了将org文档导出为其他格式的能力。代码块也可以在导出时加以控制。选项`-n`表示，在导出代码块时，会在各行加上行号。 `-r`表示，在导出时去掉代码行引用。在上面的代码块中，`(ref:puts)`为该代码行的一个引用，注意，引用名为`puts`，在后面的org文档内容中，可以链接到这行代码，在文档用来指示代码时，非常有用。
 
+导出时也可以决定是否执行代码块后再导出。由header arguments `:exports code`决定，:export的值有4个，为，code、results、both、none，分别表示只导出代码(导出时不执行)，只导出执行结果(导出时要执行)、导出代码和执行结果(导出时要执行)及不导出代码和执行结果(导出时不执行代码)。
