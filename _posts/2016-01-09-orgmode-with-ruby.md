@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "在emacs Org mode环境中学习Ruby"
+title: "在Emacs Org mode环境中学习Ruby"
 date: 2016-01-09 23:59:59 +0800
 comments: true
 sharing: false
@@ -20,3 +20,45 @@ categories: emacs "Org mode" ruby
 基于literate programming 的概念，org 提供了对源代码的相应操作支持。可以在org文档中支持多种编程语言的编辑、运行、代码块调用执行、运行结果导出等。它支持的语言为[http://orgmode.org/manual/Languages.html#Languages](http://orgmode.org/manual/Languages.html#Languages)。
 
 本文写作时Org mode的版本为8.3.2。
+
+# 配置Org mode
+
+## 添加 Org mode 支持的语言
+
+缺省Org mode只支持执行elisp，需要在.emacs中加入如下配置来支持ruby，
+
+    (org-babel-do-load-languages
+          'org-babel-load-languages
+          '((emacs-lisp . t)
+            (ruby . t)))
+
+需要注意的是，在org文档中执行代码是有安全风险的，要注意鉴别要执行的代码。
+
+## 在org文档中添加代码块
+
+代码块是一个类似如下形式的文本块，
+
+    #+NAME: <name>
+    #+BEGIN_SRC <language> <switches> <header arguments>
+       <body>
+    #+END_SRC
+
+其中`#NAME:`用来标识这段代码块，以便在其他地方引用或调用。`<language>`代表支持的语言标识符。`<switches>`是用来控制代码块导出到文档的参数。`<header arguments>`用来控制literate programming中的相关参数和代码执行参数。`<header arguments>`的参数比较多，也比较复杂，可以参考[http://orgmode.org/manual/Header-arguments.html#Header-arguments](http://orgmode.org/manual/Header-arguments.html#Header-arguments)。
+
+另外，由于需要经常输入代码块，可以在emacs中先输入`<`，再输入`s`，再按TAB键来生成代码块模板。有以下快捷模板，
+
+    s	#+BEGIN_SRC ... #+END_SRC 
+    e	#+BEGIN_EXAMPLE ... #+END_EXAMPLE
+    q	#+BEGIN_QUOTE ... #+END_QUOTE 
+    v	#+BEGIN_VERSE ... #+END_VERSE 
+    c	#+BEGIN_CENTER ... #+END_CENTER 
+    l	#+BEGIN_LaTeX ... #+END_LaTeX 
+    L	#+LaTeX: 
+    h	#+BEGIN_HTML ... #+END_HTML 
+    H	#+HTML: 
+    a	#+BEGIN_ASCII ... #+END_ASCII 
+    A	#+ASCII: 
+    i	#+INDEX: line 
+    I	#+INCLUDE: line 
+    
+
