@@ -34,16 +34,17 @@ categories: emacs "Org mode" ruby
 
 需要注意的是，在org文档中执行代码是有安全风险的，要注意鉴别要执行的代码。
 
-## 在org文档中添加代码块
+# 代码块格式
 
 代码块是一个类似如下形式的文本块，
 
     #+NAME: <name>
+    #+CAPTION: <caption>
     #+BEGIN_SRC <language> <switches> <header arguments>
        <body>
     #+END_SRC
 
-其中`#NAME:`用来标识这段代码块，以便在其他地方引用或调用。`<language>`代表支持的语言标识符。`<switches>`是用来控制代码块导出到文档的参数。`<header arguments>`用来控制literate programming中的相关参数和代码执行参数。`<header arguments>`的参数比较多，也比较复杂，可以参考[http://orgmode.org/manual/Header-arguments.html#Header-arguments](http://orgmode.org/manual/Header-arguments.html#Header-arguments)。
+在org文档中，以`#=`开头的部分为文档或代码块的元数据，其中`#+NAME:`用来标识这段代码块，以便在其他地方引用或调用。`#+CAPTION:`为导出整个org文档时，在导出的文档中(HTML或pdf等格式)，这个代码块的标题。`<language>`代表支持的语言标识符。`<switches>`是用来控制代码块导出到文档的参数。`<header arguments>`用来控制literate programming中的相关参数和代码执行参数。`<header arguments>`的参数比较多，也比较复杂，可以参考[http://orgmode.org/manual/Header-arguments.html#Header-arguments](http://orgmode.org/manual/Header-arguments.html#Header-arguments)。
 
 另外，由于需要经常输入代码块，可以在emacs中先输入`<`，再输入`s`，再按TAB键来生成代码块模板。有以下快捷模板，
 
@@ -61,4 +62,37 @@ categories: emacs "Org mode" ruby
     i	#+INDEX: line 
     I	#+INCLUDE: line 
     
+    
+# 添加一个Ruby代码块
+
+在org文档中添加一个 ruby 代码块如下，
+    
+    #+NAME: snippet:basic_ruby
+    #+CAPTION: Ruby 基本语句
+    #+BEGIN_SRC ruby -n -i :exports code
+    puts 'hello ruby' (ref:puts)
+    80.times {puts '*'} 
+    # this is single comment (ref:singlelinecomment)
+    =begin
+    multi line
+      comment
+    =end
+    #+END_SRC
+    
+    这行是[[(puts)][打印语句]]，这行是[[(singlelinecomment)][单行注释]]
+        
+        
+ruby代码为 `#+BEGIN_SRC`到`#END_SRC`之间的文本。
+
+## 编辑
+
+光标移动到代码块中，按键`C-c '`，emacs会自动弹出一个临时buffer，这个buffer已经处于ruby相关的major mode，内容为代码块中的ruby代码。在这个窗口中可以自由的编写ruby代码。编写过程中，可以按`C-x C-s`，将代码同步到org文档中。也可以完成编辑后，再按`C-c '`关闭这个临时buffer，并将内容同步到org文档中的代码块中。
+
+前面的三个选项中，`-i`表示在临时buffer中编辑源代码时，保持缩进为代码块中的样子，而不要根据ruby的一般缩进改变代码，比如，如果不加`-i`选项，则临时buffer会在各行代码前面加上2个空格的缩进。
+
+在临时buffer中，还可以使用`C-c l`来对各行添加引用，会生成格式如`(ref:xxx)`的引用，`xxx`为emacs会提示你输出的引用名。这些引用会保存起来，在后面的org文档写作中，可用使用`C-c C-l`来方便地插入这些引用。
+
+## 导出
+
+Org mode提供了将org文档导出为其他格式的能力。代码块也可以在导出时加以控制。选项`-n`表示，在导出代码块时，会在各行加上行号。 `-r`表示，在导出时去掉代码行引用。在上面的代码块中，`(ref:puts)`为该代码行的一个引用，注意，引用名为`puts`，在后面的org文档内容中，可以链接到这行代码，在文档用来指示代码时，非常有用。
 
