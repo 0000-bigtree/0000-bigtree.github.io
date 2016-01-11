@@ -15,7 +15,7 @@ categories: emacs
 
 在遥远的蛮荒时代(其时也就 7、8 年前)，打磨 emacs 的方法是在网上一条条地找配置或技巧，怎么样缺省显示行号，怎么样在 frame 标题栏显示当前 buffer 的文件全路径等等。每搜集到一条相关的 elisp 代码，把它放入 $HOME/.emacs 中，再验证和调整。这个过程麻烦又琐碎，上手缓慢，效率奇低。另外一种方法是是使用大牛的 .emacs 文件，但是这些大牛的想法，你知道的，高山仰止，又懒得花时间对你循循善诱，即使费心千辛万苦让这个 .emacs 在你的环境中工作正常了，你可能还是云里雾里，也难以调整它来符合你的需求。
 
-emacs 的功能众多和扩展定制麻烦，导致上手困难，即使对于程序员，也要花费大量的时间来学习、调整和掌握它。这方面，不得不说，Sublime、Atom、JEdit、UltraEdit 要做得好很多，很多功能是开箱即用的，相对于 emacs，需要配置的地方要少得多。但自从 emacs 24 提供了包管理工具 package.el 后，可以通过 ELPA(Emacs Lisp Package Archive) 网站来安装扩展包，已经是非常轻松的事。ELPA 对于 emacs 社区来说，也是极为重要的一件事，它将社区中庞大的的功能扩展在同一个地方，以相同的方式组织起来，提供这些扩展的各个版本及它们各自的依赖。emacs 可以访问 ELPA 网站，进行安装、升级功能扩展包。功能扩展的发布、升级及 emacs 功能扩展搜索、安装、升级这些流程可以依托 ELPA 网站来进行完整流畅的循环，促进了 emacs 的扩展质量提高，整个 emacs 社区也更加繁荣。
+emacs 的功能众多和扩展定制麻烦，导致上手困难，即使对于程序员，也要花费大量的时间来学习、调整和掌握它。这方面，不得不说，Sublime、Atom、JEdit、UltraEdit 要做得好很多，很多功能是开箱即用的，相对于 emacs，需要配置的地方要少得多。但自从 emacs 24 提供了包管理工具 package.el 后，可以通过 ELPA(Emacs Lisp Package Archive) 网站来安装扩展包，已经是非常轻松的事。ELPA 对于 emacs 社区来说，也极为重要，它将社区中庞大的的功能扩展在同一个地方，以相同的方式组织起来，提供这些扩展的各个版本及它们各自的依赖。emacs 可以访问 ELPA 网站，进行安装、升级功能扩展包。功能扩展的发布、升级及 emacs 功能扩展搜索、安装、升级这些流程可以依托 ELPA 网站来进行完整流畅的循环，促进了 emacs 的扩展质量提高，整个 emacs 社区也更加繁荣。
 
 对于定制这个问题，Github 这类网站让程序员协作变得更加方便和高效，可以集中更多志趣相投的程序员来做同样的事情。随着开发力量的增强和其他项目触发的一些灵感 (如 [Oh My Zsh](http://ohmyz.sh/))，对 emacs 的定制已经不再局限于折腾 .emacs 文件这样的小规模代码编写了，对 emacs 的定制和二次开发已经变成代码行可观的项目，这些项目借鉴了原来的一些经验和成果，把它们集成和包装起来，辅助丰富的文档、巧妙的设计、稳定可靠的质量及迅速的使用反馈，让初学者打磨 emacs 的效率大大提高了，体验也更加良好。这些项目主要有：[Emacs Starter Kit](https://github.com/technomancy/emacs-starter-kit)、[emacs.d](https://github.com/purcell/emacs.d)、[Emacs Prelude](https://github.com/bbatsov/prelude)、[spacemacs](https://github.com/syl20bnr/spacemacs)等。
 
