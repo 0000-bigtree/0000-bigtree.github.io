@@ -14,8 +14,8 @@ categories: emacs elnode
 
 使用命令 `M-x elnode-make-webserver` 创建一个实例，需要指定目录和端口。
 
-当你启动服务器后，会发觉在只能以127.0.0.1这个IP访问。可以在 `.emacs` 文件中设置变量 `elnode-init-host` 来设置 Elnode服务器的监听 IP。设置为 `0.0.0.0` 则会监听本机的所有IP。
+当你启动服务器后，会发觉在只能以127.0.0.1这个IP访问。可以在 `.emacs` 文件中设置变量 `elnode-init-host` 来设置 Elnode服务器的监听 IP。设置为 `0.0.0.0` 则会监听本机的所有IP(Windows下无效，只能指定具体的IP地址)。
 
-    (setq elnode-init-host "10.8.9.99")
+    (setq elnode-init-host "0.0.0.0")
     
 也可以使用命令 `C-u M-x elnode-make-webserver`，会提示需要指定目录、端口和IP。
