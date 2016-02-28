@@ -41,7 +41,7 @@ GitHub：&nbsp;&nbsp;&nbsp;<https://github.com/0000-bigtree>
 + 构建：Ant、Maven、Gradle
 + OSGi：Equinox、Felix
 + ORM：Hibernate、EclipseLink
-+ Web：JSP/Servlet、Spring MVC、Struts2、CXF、Wicket
++ Web：JSP/Servlet、Spring MVC、CXF、Wicket
 + Ioc：Spring
 + 网络：Mina、ActiveMQ
 + GUI：SWT、Swing、Eclipse RCP、Netbeans RCP
@@ -74,7 +74,7 @@ GitHub：&nbsp;&nbsp;&nbsp;<https://github.com/0000-bigtree>
 
 工作介绍：
 
-参与从零开始的、震有新一代网管产品研发，主要负责架构和核心业务实现。在服务端采用 OSGi 来实现面向 SOA 的业务设计，客户端使用 Netbeans 富客户端，以WebService(SOAP 风格)通信。适配公司自有设备(IP-PBX、光传输设备、基站等)接入网管系统，通过 SNMP、TR069、私有协议等适配公司 OEM 设备接入网管系统，实现设备统一、集中管理。系统中对脚本的支持使用 JRuby，以快速开发一些管理脚本，如设备数据的导入/导出、简单加工、管理数据报表生成、设备巡检脚本等。
+参与从零开始的、震有新一代网管产品研发，主要负责架构和核心业务实现。在服务端采用 OSGi 来实现面向 SOA 的业务设计，客户端使用 Netbeans 富客户端，以WebService(SOAP 风格)通信。适配公司自有设备(IP-PBX、光传输设备、基站等)接入网管系统，通过 SNMP、TR069、私有协议等适配公司 OEM 设备接入网管系统，实现设备统一、集中管理。系统中对脚本的支持使用 JRuby，以快速开发一些管理脚本，如设备数据的导入/导出、管理数据报表生成等。
 
 还参与了公司其他产品的架构或开发工作，产品有：
 
@@ -118,7 +118,7 @@ iMAP(集成管理应用平台)安全业务模块，前台开发工程师，iMAP 
 
 工作介绍：
 
-公司主要做外包项目为主，第 1 年使用 Oracle Developer 开发工具，第 2 年转向 Java，主要使用 SWT、 Eclipse RCP、Spring、Hibernate、JSP/Servlet、JSF 等等框架或库。
+公司主要做外包项目为主，第 1 年使用 Oracle Developer 开发工具，第 2 年转向 Java，主要使用 SWT、 Eclipse RCP、Spring、Hibernate、JSP/Servlet、Struts、JSF 等等框架或库。
 
 在业务上，由于各个项目差别太大，基本上没有什么积累。积累的主要是相关的技术经验，前期参与公司的各个项目开发，实现客户的需求，垒代码是主要工作。后期参与公司的技术平台设计和开发工作，形成公司的快速项目模板，模板项目主要是包括了配置好的、选定框架(如 Spring、Hibernate、log4j 等等)，一些公共业务模块(人员管理，日志管理、安全管理等等)，构建脚本，另外还有模板代码等，从而快速生成新项目的基础设施，规范开发流程、提高开发效率。
 
