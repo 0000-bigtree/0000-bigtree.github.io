@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Django初体验"
+title:  "Django 初体验"
 date:   2016-03-26 00:00:00
 categories: python django
 ---
@@ -9,7 +9,7 @@ Django是最有名的Python Web框架之一，网上看了一下与Rails的对�
 
 这是一篇学习笔记，关于慕课网的 [django初体检](http://www.imooc.com/learn/458) 课程。针对自己的 OSX 环境，内容有一些小变动。
 
-# 安装Python
+# 安装 Python
 
 使用 [pyenv](https://github.com/yyuu/pyenv) 来管理 Python 的多个版本，pyenv 类似于 rbenv 或 rvm(实际上就是 rbenv 改的，把安装 ruby 变成了安装 python)，用来管理同一机器上的多个 Python 版本。
 
