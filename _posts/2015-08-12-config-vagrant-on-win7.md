@@ -393,6 +393,14 @@ JRuby 需要 Java 来支持，也可以只安装 JRE，但开发环境为了方�
     npm install -g gulp
     npm install -g grunt
     npm install -g bower
+    
+## 安装 pyenv
+
+TODO
+
+## 安装 pyenv-virtualenv
+
+TODO
 
 ## 安装 rbenv
 
