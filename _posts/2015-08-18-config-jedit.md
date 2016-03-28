@@ -13,7 +13,7 @@ categories: jEdit
 
 # 下载及安装
 
-[下载](http://www.jedit.org/index.php?page=download)，当前的最新稳定版为 4.2.0。下载 Java-based installer,
+[下载](http://www.jedit.org/index.php?page=download)，当前的最新稳定版为 5.2.0。下载 Java-based installer,
 因这个安装包是一个 Java 打包程序，可以在 Windows、Linux 及 OS X 上直接使用。
 
     java -jar jedit5.2.0install.jar
