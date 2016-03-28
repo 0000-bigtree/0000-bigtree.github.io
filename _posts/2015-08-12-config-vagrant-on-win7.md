@@ -147,6 +147,10 @@ guest: 80 表示虚拟机中的 80 端口， host: 8080 表示映射到宿主机
 这里使用使用绝对路径，也可以使用相对路径，比如： “workspace”。
 后面的参数 “/home/vagrant/workspace” 表示虚拟机中对应的映射目录，必须是一个绝对路径。
 
+Vagrant 缺省情况下，会共享当前 Vagrantfile 所在目录到虚拟机中的 `/vagrant`，可以用如下方式禁用这个特性，
+
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+
 ### 不能设置共享文件夹的问题的解决
 
 在执行 vagrant up 命令后，输出日志，发现，
