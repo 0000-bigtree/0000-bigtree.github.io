@@ -84,7 +84,7 @@ Django是最有名的Python Web框架之一，网上看了一下与Rails的对�
 
 ALLOWED_HOSTS，允许访问的客户端 IP。
 
-INSTALLED_APPS，已安装的应用，这个应用是 Django 里的应用概念。Django 里面的应用概念，类似于模块，是一种业务逻辑的组织方式。
+INSTALLED_APPS，已安装的应用，这个应用是 Django 里的应用概念。Django 里面的应用概念，用来划分功能，类似于模块，是一种业务逻辑的组织方式，可以作为独立的组件，在其他 Django 项目中复用。
 
 MIDDLEWARE_CLASSES，中间件，与 rack 里的中间件类似。
 
@@ -103,3 +103,77 @@ URL 映射配置文件，指定访问一个 url 时，应该被哪个类的方�
 ## django_first/wsgi.py
 
 WSGI(Web Server Gateway Interfac)，即 Django 项目与 Web 服务器的通信接口。类似 Ruby 中的 rack，把 Web 项目(在这里是 Django 项目)与 Web 服务器的调用标准化，包括调用内容及调用方式等。有了 WSGI 标准定义后，任何 Python 程序都可以与 Web 服务器交互，并且是通用的，以相同的方式。 wsgi.py 用来配置与应用服务器交互的相关参数。
+
+
+# 创建 Django 应用
+
+在项目目录下，使用如下命令创建一下应用，应用名称为 blog，
+
+    python manage.py startapp blog
+
+会创建 blog 目录，结构如下，
+
+    blog
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── migrations
+    │   └── __init__.py
+    ├── models.py
+    ├── tests.py
+    └── views.py
+
+## 将应用添加到项目中
+
+应用需要添加项目中，才能使用，项目才会把这个应用作为项目的一部分，进行管理，编辑 `django_first/settings.py`，在 `INSTALLED_APPS` 添加如下内容，
+
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'blog', # 新增加的应用，上面是 Django 自带的应用
+    ]
+
+# 应用目录介绍
+
+## blog/views.py
+
+用来生成页面，在项目的 urls.py 中配置，根据访问 URL 来执行其中的一个方法，生成响应，类似于 rails 中的 controller。
+
+## blog/models.py
+
+定义数据库表。Django 1.7 之后，添加了 migration，可以根据 models.py 来产生 migration。
+
+## blog/admin.py
+
+Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需要对项目中的其他应用管理，admin.py 就是 django.contrib.admin 应用用来管理同项目中其他应用的辅助文件。
+
+# 在应用中创建一个页面
+
+在上面创建的 blog 应用中创建一个页面，首先编辑 `blog/views.py`，变成如下代码，
+
+    from django.shortcuts import render
+    from django.http import HttpResponse
+    
+    # Create your views here.
+    
+    def hello(request):
+        return HttpResponse('<html><body>Hello World!</body></html>')
+
+编辑项目中的 `django_first/urls.py`，添加 URL 映射，
+
+    from django.conf.urls import url
+    from django.contrib import admin
+    
+    urlpatterns = [
+        url(r'^admin/', admin.site.urls),
+        url(r'hello/', 'blog.views.hello'), # 新增的 blog 应用中的一个 URL 映射
+    ]
+    
+重新启动项目，即可查看结果，[http://127.0.0.1:8000/hello/](http://127.0.0.1:8000/hello/)，
+
+    python admin.py runserver
+
