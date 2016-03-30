@@ -147,13 +147,17 @@ WSGI(Web Server Gateway Interfac)，即 Django 项目与 Web 服务器的通信�
 
 定义数据库表。Django 1.7 之后，添加了 migration，可以根据 models.py 来产生 migration。
 
+## blog/templates
+
+存放模版的目录。
+
 ## blog/admin.py
 
 Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需要对项目中的其他应用管理，admin.py 就是 django.contrib.admin 应用用来管理同项目中其他应用的辅助文件。
 
-# 在应用中创建一个页面
+# 在应用中创建一个最简单的页面
 
-在上面创建的 blog 应用中创建一个页面，首先编辑 `blog/views.py`，变成如下代码，
+在上面创建的 blog 应用中创建一个最简单的页面，首先编辑 `blog/views.py`，变成如下代码，
 
     from django.shortcuts import render
     from django.http import HttpResponse
@@ -177,3 +181,6 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
 
     python admin.py runserver
 
+# 开发blog应用页面
+
+前面尝试编写了最简单的一个页面，了解了 Django 处理请求的基本过程。下面开始编写稍微正式一点的页面。blog 应用主要包含两个页面。一个页面，显示 blog 列表，一个页面，显示某条 blog 的详细内容，在列表页面中点击某条 blog，就可以导航到其详细内容页面。
