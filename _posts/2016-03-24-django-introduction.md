@@ -14,12 +14,12 @@ Django是最有名的Python Web框架之一，网上看了一下与Rails的对�
 使用 [pyenv](https://github.com/yyuu/pyenv) 来管理 Python 的多个版本，pyenv 类似于 rbenv 或 rvm(实际上就是 rbenv 改的，把安装 ruby 变成了安装 python)，用来管理同一机器上的多个 Python 版本。
 
     brew install pyenv
-        
+
 由于 pyevn 是 rbenv 改的，所以命令用法是一样的，安装 Python 版本，
 
     pyenv install 3.5.1
     pyenv global 3.5.1 # 设置当前使用
-    
+
 # 创建虚拟环境
 
 这个功能是通过 pyenv 的插件 [pyevn-virtualenv](https://github.com/yyuu/pyenv-virtualenv) 实现的，它跟 virtualenv 并不是同一个东西，尽管 virtualenv 也可以创建虚拟环境。
@@ -51,7 +51,7 @@ Django是最有名的Python Web框架之一，网上看了一下与Rails的对�
     │   │   ├── urls.py
     │   │   └── wsgi.py
     │   └── manage.py
-    
+
 执行如下命令运行开发服务器，通过 [http://127.0.0.1:8000](http://127.0.0.1:8000)，访问页面，
 
     cd django_first
@@ -69,7 +69,7 @@ Django是最有名的Python Web框架之一，网上看了一下与Rails的对�
 
     python manage.py runserver 0.0.0.0:8080 # 指定 IP 及端口运行开发服务器
     python manage.py runserver # 不指定 IP，缺省为 127.0.0.1，端口 8000
-    
+
 执行 shell(类似 rails c)
 
     python manage.py shell # 如果像前面那样装了 ipython，会以它作为交互环境
@@ -93,8 +93,8 @@ ROOT_URLCONF，指定 urls 根文件。
 TEMPLATES，模板引擎配置。
 
 DATABASES，数据库配置。
- 
-STATIC_URL，静态文件路径。 
+
+STATIC_URL，静态文件路径。
 
 ## django_first/urls.py
 
@@ -161,9 +161,9 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
 
     from django.shortcuts import render
     from django.http import HttpResponse
-    
+
     # Create your views here.
-    
+
     def hello(request):
         return HttpResponse('<html><body>Hello World!</body></html>')
 
@@ -171,16 +171,72 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
 
     from django.conf.urls import url
     from django.contrib import admin
-    
+
     urlpatterns = [
         url(r'^admin/', admin.site.urls),
         url(r'hello/', 'blog.views.hello'), # 新增的 blog 应用中的一个 URL 映射
     ]
-    
+
 重新启动项目，即可查看结果，[http://127.0.0.1:8000/hello/](http://127.0.0.1:8000/hello/)，
 
     python admin.py runserver
 
-# 开发blog应用页面
+# 开发 blog 应用页面
 
 前面尝试编写了最简单的一个页面，了解了 Django 处理请求的基本过程。下面开始编写稍微正式一点的页面。blog 应用主要包含两个页面。一个页面，显示 blog 列表，一个页面，显示某条 blog 的详细内容，在列表页面中点击某条 blog，就可以导航到其详细内容页面。
+
+从前面可知，在项目的 settings.py 已经安装了 Django 提供的 admin 等应用，先让它可以正常工作。
+
+## 执行内置应用的迁移
+
+    python manage.py migrate
+
+## 创建超级用户
+
+    python manage.py createsuperuser
+
+执行了迁移之后，可以访问 [http://localhost:8000/admin](http://localhost:8000/admin)，以前面创建的超级用户登录，登录成功后可以看到如下的界面，
+
+![admin页面](/resources/img/2016-03-24-django-introduction/admin-page.png)
+
+## 设计model
+
+即设计 blog 的数据模型。
+
+打开 blog 应用目录下的 models.py，变成如下代码，
+
+    from django.db import models
+    from django.contrib import admin
+
+    # Create your models here.
+    class BlogsPost(models.Model):
+        title = models.CharField(max_length = 150)
+        body = models.TextField()
+        timestamp = models.DateTimeField()
+
+    admin.site.register(BlogsPost)
+
+## 根据 model 创建数据迁移脚本
+
+    python manage.py makemigrations blog
+    python manage.py migrate # 执行迁移
+
+再登录 admin 后台，可以看到已经有刚才创建的表，可以对这个表增删改查数据。
+
+![blogpost页面](/resources/img/2016-03-24-django-introduction/admin-blogpost.png)
+
+利用这个界面，创建几条 blog post 数据，以便后面使用。
+
+因为 admin 应用中的 blogpost 列表只有一列，看 blogpost 数据不太方便，可以在 models.py 中创建一个 BlogPostAdmin 类，继承 admin.ModelAdmin父类，让 admin 应用来管理它，以表格的形式显示 blogpost 的标题和时间。
+
+![blogpost list 页面](/resources/img/2016-03-24-django-introduction/admin-blogpost-list.png)
+
+在 models.py 中添加，
+
+    ...
+    class BlogPostAdmin(admin.ModelAdmin):
+        list_display = ('title','timestamp')
+
+    admin.site.register(BlogsPost,BlogPostAdmin)
+
+![blogpostadmin list 页面](/resources/img/2016-03-24-django-introduction/admin-blogpostadmin-list.png)
