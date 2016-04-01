@@ -239,4 +239,4 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
 
     admin.site.register(BlogsPost,BlogPostAdmin)
 
-![blogpostadmin list 页面](/resources/img/2016-03-24-django-introduction/admin-blogpostadmin-list.png)
+![blogpostadmin list 页面](/resources/img/2016-03-24-django-introduction/admin-blogpostadmin-lis.png)
