@@ -240,3 +240,107 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
     admin.site.register(BlogsPost,BlogPostAdmin)
 
 ![blogpostadmin list 页面](/resources/img/2016-03-24-django-introduction/admin-blogpostadmin-lis.png)
+
+## 开发 blog 主页面
+### 创建模板
+
+在 blog 应用的 templates 目录下创建 index.html 模板文件，内容如下：
+
+    {% for post in posts %}
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.timestamp }}</p>
+    <p>{{ post.body }}</p>
+    {% endfor%}
+
+### 创建视图方法
+
+修改 blog 应用的 views.py 为如下代码，
+
+    from django.shortcuts import render_to_response
+    from blog.models import BlogsPost
+
+    def index(request):
+        blog_list = BlogsPost.objects.all() # 获取数据库里面所拥有 BlogPost 对象
+        return render_to_response('index.html',{'posts':blog_list})
+
+### 添加 URL 模式
+
+在项目的 urls.py 中添加 URL 映射如下，
+
+    url(r'^blog/$', 'blog.views.index'),
+
+访问 [http://localhost:8000/blog/](http://localhost:8000/blog/)，可以看到如下的页面，
+
+![blog 主页面](/resources/img/2016-03-24-django-introduction/blog-index.png)
+
+### 优化布局
+### 使用父模板
+
+这个类似 rails 里面的布局，在 blog 应用的 templates 里添加 base.html 模板，内容如下，
+
+    <html>
+        <style type="text/css">
+         body{color:#efd;background:#453;padding:0 5em;margin:0}
+         h1{padding:2em 1em;background:#675}
+         h2{color:#bf8;border-top:1px dotted #fff;margin-top:2em}
+         p{margin:1em 0}
+        </style>
+
+        <body>
+            <h1>BLOG</h1>
+            <h3>好好学习，天天向上</h3>
+            {% block content %}
+            {% endblock %}
+        </body>
+    </html>
+
+修改 index.html 模板，让它引用 base.html 模板，并作为它的 content 块，
+
+    {% extends "base.html" %}
+    {% block content %}
+    {% for post in posts %}
+    <h2><a href="blog/{{post.id}}">{{  post.title }}</a></h2>
+    <p>{{ post.timestamp | date:"1,F jS"}}</p>
+    <p>{{ post.body }}</p>
+    {% endfor %}
+    {% endblock %}
+
+
+### 项目主页
+
+把项目的主页也定位到 /blog，可以在 项目的 urls.py 中添加，
+
+    url(r'^$','blog.views.index'),
+
+## 开发 blog 内容页面
+### 模板
+
+    <html>
+        <body>
+            <h2>{{ blog.title }}</a></h2>
+            <p>{{ blog.timestamp | date:"1,F jS"}}</p>
+            <p>{{ blog.body }}</p>
+        </body>
+    </html>
+
+### 视图
+
+    ...
+    from django.template import loader
+    ...
+
+    def show(request, blogId):
+        t = loader.get_template('blog.html')
+        blog = BlogsPost.objects.get(id=blogId)
+        context = {'blog': blog}
+        html = t.render(context)
+        return HttpResponse(html)
+
+### URL
+
+
+    url(r'^blog/(\d+)$', 'blog.views.show'),
+
+# 参考链接
+
+[http://my.oschina.net/matrixchan/blog/184445?fromerr=cqu8lHAp](http://my.oschina.net/matrixchan/blog/184445?fromerr=cqu8lHAp)
