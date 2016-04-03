@@ -277,33 +277,36 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
 
 这个类似 rails 里面的布局，在 blog 应用的 templates 里添加 base.html 模板，内容如下，
 
-    <html>
-        <style type="text/css">
-         body{color:#efd;background:#453;padding:0 5em;margin:0}
-         h1{padding:2em 1em;background:#675}
-         h2{color:#bf8;border-top:1px dotted #fff;margin-top:2em}
-         p{margin:1em 0}
-        </style>
+~~~html
+<html>
+    <style type="text/css">
+     body{color:#efd;background:#453;padding:0 5em;margin:0}
+     h1{padding:2em 1em;background:#675}
+     h2{color:#bf8;border-top:1px dotted #fff;margin-top:2em}
+     p{margin:1em 0}
+    </style>
 
-        <body>
-            <h1>BLOG</h1>
-            <h3>好好学习，天天向上</h3>
-            {% block content %}
-            {% endblock %}
-        </body>
-    </html>
+    <body>
+        <h1>BLOG</h1>
+        <h3>好好学习，天天向上</h3>
+        \{\% block content \%\}
+        \{\% endblock \%\}
+    </body>
+</html>
+~~~
 
 修改 index.html 模板，让它引用 base.html 模板，并作为它的 content 块，
 
-    {% extends "base.html" %}
-    {% block content %}
-    {% for post in posts %}
-    <h2><a href="blog/{{post.id}}">{{  post.title }}</a></h2>
-    <p>{{ post.timestamp | date:"1,F jS"}}</p>
-    <p>{{ post.body }}</p>
-    {% endfor %}
-    {% endblock %}
-
+```
+\{\% extends "base.html" \%\}
+\{\% block content \%\}
+\{\% for post in posts \%\}
+<h2><a href="blog/{{post.id}}">{{  post.title }}</a></h2>
+<p>{{ post.timestamp | date:"1,F jS"}}</p>
+<p>{{ post.body }}</p>
+\{\% endfor \%\}
+\{\% endblock \%\}
+```
 
 ### 项目主页
 
@@ -335,8 +338,7 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
         html = t.render(context)
         return HttpResponse(html)
 
-### URL
-
+### URL 模式
 
     url(r'^blog/(\d+)$', 'blog.views.show'),
 
