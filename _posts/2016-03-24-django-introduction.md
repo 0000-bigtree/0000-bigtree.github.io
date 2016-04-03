@@ -274,7 +274,6 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
 ![blog 主页面](/resources/img/2016-03-24-django-introduction/blog-index.png)
 
 ### 优化布局
-### 使用父模板
 
 这个类似 rails 里面的布局，在 blog 应用的 templates 里添加 base.html 模板，内容如下，
 
