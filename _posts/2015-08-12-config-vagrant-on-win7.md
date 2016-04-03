@@ -268,6 +268,7 @@ boot.sh 内容，
      sudo apt-get install python-dev
      sudo apt-get install python-pip
      sudo pip install pip --upgrade
+     sudo apt-get install -y graphviz
 
 设置时区，
 
