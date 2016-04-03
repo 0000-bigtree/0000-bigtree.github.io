@@ -127,15 +127,17 @@ WSGI(Web Server Gateway Interfac)，即 Django 项目与 Web 服务器的通信�
 
 应用需要添加项目中，才能使用，项目才会把这个应用作为项目的一部分，进行管理，编辑 `django_first/settings.py`，在 `INSTALLED_APPS` 添加如下内容，
 
-    INSTALLED_APPS = [
-        'django.contrib.admin',
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
-        'blog', # 新增加的应用，上面是 Django 自带的应用
-    ]
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'blog', # 新增加的应用，上面是 Django 自带的应用
+]
+```
 
 # 应用目录介绍
 
@@ -159,23 +161,27 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
 
 在上面创建的 blog 应用中创建一个最简单的页面，首先编辑 `blog/views.py`，变成如下代码，
 
-    from django.shortcuts import render
-    from django.http import HttpResponse
+```python
+from django.shortcuts import render
+from django.http import HttpResponse
 
-    # Create your views here.
+# Create your views here.
 
-    def hello(request):
-        return HttpResponse('<html><body>Hello World!</body></html>')
+def hello(request):
+    return HttpResponse('<html><body>Hello World!</body></html>')
+```
 
 编辑项目中的 `django_first/urls.py`，添加 URL 映射，
 
-    from django.conf.urls import url
-    from django.contrib import admin
+```python
+from django.conf.urls import url
+from django.contrib import admin
 
-    urlpatterns = [
-        url(r'^admin/', admin.site.urls),
-        url(r'hello/', 'blog.views.hello'), # 新增的 blog 应用中的一个 URL 映射
-    ]
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'hello/', 'blog.views.hello'), # 新增的 blog 应用中的一个 URL 映射
+]
+```
 
 重新启动项目，即可查看结果，[http://127.0.0.1:8000/hello/](http://127.0.0.1:8000/hello/)，
 
@@ -205,16 +211,18 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
 
 打开 blog 应用目录下的 models.py，变成如下代码，
 
-    from django.db import models
-    from django.contrib import admin
+```python
+from django.db import models
+from django.contrib import admin
 
-    # Create your models here.
-    class BlogsPost(models.Model):
-        title = models.CharField(max_length = 150)
-        body = models.TextField()
-        timestamp = models.DateTimeField()
+# Create your models here.
+class BlogsPost(models.Model):
+    title = models.CharField(max_length = 150)
+    body = models.TextField()
+    timestamp = models.DateTimeField()
 
-    admin.site.register(BlogsPost)
+admin.site.register(BlogsPost)
+```
 
 ## 根据 model 创建数据迁移脚本
 
@@ -233,41 +241,51 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
 
 在 models.py 中添加，
 
-    ...
-    class BlogPostAdmin(admin.ModelAdmin):
-        list_display = ('title','timestamp')
+```python
+...
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ('title','timestamp')
 
-    admin.site.register(BlogsPost,BlogPostAdmin)
-
+admin.site.register(BlogsPost,BlogPostAdmin)
+```
 ![blogpostadmin list 页面](/resources/img/2016-03-24-django-introduction/admin-blogpostadmin-lis.png)
 
 ## 开发 blog 主页面
+
 ### 创建模板
 
 在 blog 应用的 templates 目录下创建 index.html 模板文件，内容如下：
 
-    {% for post in posts %}
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.timestamp }}</p>
-    <p>{{ post.body }}</p>
-    {% endfor%}
+```html
+{% raw %}
+{% for post in posts %}
+<h2>{{ post.title }}</h2>
+<p>{{ post.timestamp }}</p>
+<p>{{ post.body }}</p>
+{% endfor%}
+{% endraw %}
+```
 
 ### 创建视图方法
 
 修改 blog 应用的 views.py 为如下代码，
 
-    from django.shortcuts import render_to_response
-    from blog.models import BlogsPost
+```python
+from django.shortcuts import render_to_response
+from blog.models import BlogsPost
 
-    def index(request):
-        blog_list = BlogsPost.objects.all() # 获取数据库里面所拥有 BlogPost 对象
-        return render_to_response('index.html',{'posts':blog_list})
+def index(request):
+    blog_list = BlogsPost.objects.all() # 获取数据库里面所拥有 BlogPost 对象
+    return render_to_response('index.html',{'posts':blog_list})
+```
 
 ### 添加 URL 模式
 
 在项目的 urls.py 中添加 URL 映射如下，
 
-    url(r'^blog/$', 'blog.views.index'),
+```python
+url(r'^blog/$', 'blog.views.index'),
+```
 
 访问 [http://localhost:8000/blog/](http://localhost:8000/blog/)，可以看到如下的页面，
 
@@ -278,6 +296,7 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
 这个类似 rails 里面的布局，在 blog 应用的 templates 里添加 base.html 模板，内容如下，
 
 ~~~html
+{% raw %}
 <html>
     <style type="text/css">
      body{color:#efd;background:#453;padding:0 5em;margin:0}
@@ -289,58 +308,71 @@ Django 自带了后台管理的应用(django.contrib.admin)，这个应用也需
     <body>
         <h1>BLOG</h1>
         <h3>好好学习，天天向上</h3>
-        \{\% block content \%\}
-        \{\% endblock \%\}
+        {% block content %}
+        {% endblock %}
     </body>
 </html>
+{% endraw %}
 ~~~
 
 修改 index.html 模板，让它引用 base.html 模板，并作为它的 content 块，
 
-```
-\{\% extends "base.html" \%\}
-\{\% block content \%\}
-\{\% for post in posts \%\}
-<h2><a href="blog/{{post.id}}">{{  post.title }}</a></h2>
+```html
+{% raw %}
+{% extends "base.html" %}
+{% block content %}
+{% for post in posts %}
+<h2><a href="blog/{{post.id}}">{{ post.title }}</a></h2>
 <p>{{ post.timestamp | date:"1,F jS"}}</p>
 <p>{{ post.body }}</p>
-\{\% endfor \%\}
-\{\% endblock \%\}
+{% endfor %}
+{% endblock %}
+{% endraw %}
 ```
 
 ### 项目主页
 
 把项目的主页也定位到 /blog，可以在 项目的 urls.py 中添加，
 
-    url(r'^$','blog.views.index'),
+```python
+url(r'^$','blog.views.index'),
+```
 
 ## 开发 blog 内容页面
+
 ### 模板
 
-    <html>
-        <body>
-            <h2>{{ blog.title }}</a></h2>
-            <p>{{ blog.timestamp | date:"1,F jS"}}</p>
-            <p>{{ blog.body }}</p>
-        </body>
-    </html>
+```html
+{% raw %}
+<html>
+    <body>
+        <h2>{{ blog.title }}</a></h2>
+        <p>{{ blog.timestamp | date:"1,F jS"}}</p>
+        <p>{{ blog.body }}</p>
+    </body>
+</html>
+{% endraw %}
+```
 
 ### 视图
+```python
+...
+from django.template import loader
+...
 
-    ...
-    from django.template import loader
-    ...
-
-    def show(request, blogId):
-        t = loader.get_template('blog.html')
-        blog = BlogsPost.objects.get(id=blogId)
-        context = {'blog': blog}
-        html = t.render(context)
-        return HttpResponse(html)
+def show(request, blogId):
+    t = loader.get_template('blog.html')
+    blog = BlogsPost.objects.get(id=blogId)
+    context = {'blog': blog}
+    html = t.render(context)
+    return HttpResponse(html)
+```
 
 ### URL 模式
 
-    url(r'^blog/(\d+)$', 'blog.views.show'),
+```python
+url(r'^blog/(\d+)$', 'blog.views.show'),
+```
 
 # 参考链接
 
