@@ -10,6 +10,7 @@ url: 'http://0000-bigtree.github.io'
 github_username: '0000-bigree'
 
 markdown: kramdown
-paginate: 6
+paginate: 8
 paginate_path: "blog/page:num"
 
+gems: [jekyll-paginate]

@@ -8,7 +8,7 @@ categories: mysql windows
 ---
 # 安装
 
-去 [http://dev.mysql.com/downloads/mysql/](http://dev.mysql.com/downloads/mysql/)下载，以 zip 格式打包的 MySQL，下载后文件为 mysql-5.7.11-winx64.zip。解压到你希望的目录，这个目录就是 MySQL 安装目录。
+去 [http://dev.mysql.com/downloads/mysql/](http://dev.mysql.com/downloads/mysql/) 下载，以 zip 格式打包的 MySQL，下载后文件为 mysql-5.7.11-winx64.zip。解压到你希望的目录，这个目录就是 MySQL 安装目录。
 
 复制安装根目录下的 my-default.ini 为 my.ini，在其 [mysqld] 部分添加如下内容，
 
@@ -61,3 +61,4 @@ categories: mysql windows
     mysqld --install-manual # 安装为服务，缺省服务名为 mysql，服务手动启动
     mysqld --install MySQL(serviceName) --defaults-file=C:\my-opts.ini
     mysqld --remove # 移除服务，服务名为 mysql
+
