@@ -9,15 +9,94 @@ categories: graphviz
 # 简介
 [Graphviz](http://www.graphviz.org/) 是一个绘图工具集，可以用称之为 [The DOT Language](http://www.graphviz.org/content/dot-language) 的 DSL 来绘图。用 dot 写好脚本之后，使用不同的布局引擎来对脚本解析，生成图片，支持 PNG、PDF 等格式。Graphviz 有好几个布局引擎，一般使用的有 dot (有向图)和 circo(环形布局)，其他的较少使用。
 
-这里有 []()。
+Graphviz 包含 3 种图形元素，图(graph)，节点(node)和边(edge)。每个元素都可以具有各自的属性，用来定义字体，样式，颜色，形状等。
+
+这里有一个 dot 用户指南， [Drawing graphs with dot](http://www.graphviz.org/pdf/dotguide.pdf)。
 
 ## 基础
 
-Graphviz 包含 3 种图形元素，图，节点和边。每个元素都可以具有各自的属性，用来定义字体，样式，颜色，形状等。
+```
+// structure.gv
+digraph G { // 图的名称为 G，digraph 表示这是一个有向图
+    main -> parse -> execute; // 节点及其指向的节点，表示 main 节点指向 parse 节点，而 parse 节点又指向 execute 节点
+    main -> init;
+    main -> cleanup;
+    execute -> make_string;
+    execute -> printf
+    init -> make_string;
+    main -> printf;
+    execute -> compare;
+}
+```
+
+graph 目前就只有 1 个，即 G，node 共 8 个，edge 表示了节点之间的指向。使用命令 `dot -Tpng structure.gv  -o structure.png` 生成的图如下所示，
+
+![structure.png](/resources/img/206-04-08-graphviz-syntax/structure.png)
+
+从上个脚本可以看出大致结构，现在做一些改进，定义一些属性，主要会影响到 node 和 edge，
+
+```
+// exstructure.gv
+digraph G {
+    node [shape="record"]; // 定义节点的开关为矩形，对所有节点生效
+    edge [style="dashed"]; // 定义边，及指向的形状为虚线，对所有边生效
+
+    main [style="filled", color="black", fillcolor="chartreuse"]; // 指定 main 节点的属性，包括填充及字体颜色
+    main -> parse -> execute;
+    main -> init;
+    main -> cleanup;
+    execute -> make_string;
+    execute -> printf
+    init -> make_string;
+    main -> printf;
+    execute -> compare [color="red"]; // 节点 execute 到 compare 的线为红色
+}
+```
+
+结果如下图所示，
+
+![exstructure.png](/resources/img/206-04-08-graphviz-syntax/exstructure.png)
+
+前面都使用的是 dot 布局，换成 circo 布局如下图所示，命令为 `circo -Tpng exstructure.gv  -o circo-structure.png`，
+
+![circo-structure.png](/resources/img/206-04-08-graphviz-syntax/circo-structure.png)
 
 ## 子图
 
-## 命令
+子图简单来说，就是把图里面的节点分组，使整个图形的各个部分看起来更加清晰。
+
+```
+digraph G {
+    subgraph cluster0 { // 子图定义，名称须以 cluster 开头
+        node [style=filled,color=white]; // 只针对整个子图的属性定义
+        style=filled;
+        color=lightgrey;
+        a0 -> a1 -> a2 -> a3;
+        label = "process #1";
+    }
+    
+    subgraph cluster1 {
+        node [style=filled];
+        b0 -> b1 -> b2 -> b3;
+        label = "process #2";
+        color=blue
+    }
+    
+    start -> a0;
+    start -> b0;
+    a1 -> b3;
+    b2 -> a3;
+    a3 -> a0;
+    a3 -> end;
+    b3 -> end;
+    start [shape=Mdiamond];
+    end [shape=Msquare];
+}
+```
+
+结果如下图所示，
+
+![cluster.png](/resources/img/206-04-08-graphviz-syntax/cluster.png)
 
 # 在 Org mode 中集成
 看[这里](http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html)的介绍，注意 :cmd 参数，如果需要使用非 dot 布局器，则需要给这个参数指定合适的布局器命令，如果使用 dot 布局器，可以省略这个参数。如果命令有参数，用 :cmdline 来指定。
