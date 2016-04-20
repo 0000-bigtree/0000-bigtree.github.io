@@ -40,6 +40,13 @@ categories: mysql windows
 
     set password = password('newpassword');
 
+允许 root 远程登录，
+
+```sql
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
 最后，把安装目录的 bin 加入到 Path 用户变量，即可正常操作。
 
 # 命令参考
