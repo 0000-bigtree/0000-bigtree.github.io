@@ -96,6 +96,65 @@ end
 
     ruby -a -F, -i -ne'puts $F.values_at(1, 0, 2, 3).join("\t")' file-name
 
+# -0
+指定记录分隔符(或者行分隔符)，使用 -n 读取文件时，默认的记录分隔符(行分隔符)就是操作系统的分隔符，但可以用 -0 来覆盖默认设置。使用时，-0 后面紧跟 8 进制字符串编码，-00 表示记录的分隔符是 2 个\n，即 2 个换行符，-0(即没有参数)或 -0777 表示把整个输入文件视为 1 个记录，-0157 表示以小写 o 作记录分隔符。
+
+# -l
+是否要单独处理记录结束符(行结束符)，缺省情况下，按记录分隔符读取记录时，会自动把记录分隔符也读入 $_ 中，作为记录的一部分。但指定 -l 参数时，读取 1 条记录，会把记录分隔符剔除掉，即 $_ 中不会包括记录分隔符。指定了 -l，再指定 -p 时，输出时，又会自动把记录分隔符加到记录的末尾。
+
+下面的代码会自动的把换行符(8 进制 15)添加到每条处理过后的新记录之后，
+
+    ruby -015 -l -pe'$_=$_.size' file-name
+
+# -r
+相当于在 -e 指定的代码之前，加了一句 `require library-name`。
+
+    ruby -rdate -e 'puts DateTime.new'
+
+等价的代码为，
+
+```ruby
+require 'date'
+puts DateTime.new
+```
+
+启动内嵌的 webrick http 服务器，端口 5000，绑定到所有地址，以当前目录为工作目录，
+
+    ruby -run -e httpd . -p 5000 -b 0.0.0.0
+
+un 是一个包装了 webrick 功能的的模块，httpd 是其中的 1 个方法。
+
+也可以直接使用 webrick，
+
+    ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 9090, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
+
+使用 sinatra 的例子，
+
+    ruby -rsinatra -e'set :public_folder, "."; set :port, 8000'
+
+很多语言都有一行脚本运行 http 服务器，python3 的例子如下，更多例子见 [https://gist.github.com/willurd/5720255](https://gist.github.com/willurd/5720255)。
+
+    python -m http.server 8000
+
+
+也可以自己编写库来运行，-I 表示在 $LOAD_PATH 中添加 1 个加载搜索路径，在 ruby 解释器的命令行中参数中，可使用多个 -I。
+
+```ruby
+# mini.rb
+def hellp
+  puts "Hello, #{ ARGV[0] }!"
+end
+```
+
+    ruby -I . -rmini -e hello Jack
+
+或
+
+    ruby -r./mini -e hello jack
+
+# 更多的例子
+
+
 # 参考
 
 《Ruby 系统管理实战》，Andre Ben Hamou 著，仲田 等译
