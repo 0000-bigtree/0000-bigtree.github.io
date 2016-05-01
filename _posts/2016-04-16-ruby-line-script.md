@@ -124,7 +124,7 @@ puts DateTime.new
 
 un 是一个包装了 webrick 功能的的模块，httpd 是其中的 1 个方法。
 
-也可以直接使用 webrick，
+也可以直接使用 webrick(这段代码对于单行脚本来说，太长了),
 
     ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 9090, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
 
@@ -154,6 +154,13 @@ end
 
 # 更多的例子
 
+定时执行命令，
+
+    ruby -e 'system "clear; ls -lahG; date" while sleep 1'
+
+在当前目录及其所有子目录下，查找大小超过 1024 Bytes 的 Java 文件，并按最近修改时间排序
+
+    ruby -e 'puts Dir["**/*.java"].find_all{|f| File.size(f) > 1024}.sort_by{|f| File.mtime(f)}'
 
 # 参考
 
