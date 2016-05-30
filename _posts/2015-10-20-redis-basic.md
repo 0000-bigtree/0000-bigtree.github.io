@@ -31,5 +31,10 @@ Redis 官方并不支持 Windows 平台，但 Microsoft 维护有一个 [Windows
 
 # 启动
 
-    redis-server # 服务启动
+    redis-server # 服务启动，缺省端口 6379
     redis-cli # 客户端启动
+
+# 命令参考
+
+    redis-server -h # 帮助
+    redis-server -v # 查看版本
