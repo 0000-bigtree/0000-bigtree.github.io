@@ -15,11 +15,11 @@ Redis 官方并不支持 Windows 平台，但 Microsoft 维护有一个 [Windows
 
 ## Ubuntu 下安装
 
-从 [这里](http://download.redis.io/releases/) 下载源码，当前的最新版本是 3.0.5。
+从 [这里](http://download.redis.io/releases/) 下载源码，当前的最新版本是 3.2.0。
 
 解压，
 
-    tar -xvf redis-3.0.5.tar.gz
+    tar -xvf redis-3.2.0.tar.gz
 
 编译测试安装，
 
