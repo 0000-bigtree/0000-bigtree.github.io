@@ -14,8 +14,8 @@ categories: ruby mechanize
 ```ruby
 require 'mechanize'
 
-agent = Mechanize.new{ |agent|
-  agent.user_agent_alias = 'Mac Safari'
+agent = Mechanize.new{ |a|
+  a.user_agent_alias = 'Mac Safari'
 }
 
 agent.get('LOGIN_URL') do |page|
