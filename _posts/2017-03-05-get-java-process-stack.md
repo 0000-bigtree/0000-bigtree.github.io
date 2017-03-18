@@ -28,6 +28,18 @@ jstack -l PID
 jstack -F PID
 ```
 
+## 使用 jcmd
+
+jcmd 是 JDK 自带的工具，用于向 JVM 进程发送命令，根据命令的不同，可以代替或部分代替 jstack、jmap 等。可以发送命令 `Thread.print` 来打印出 JVM 的线程堆栈信息。
+
+```sh
+# 下面的命令同等于 jstack PID
+jcmd PID Thread.print
+
+# 同等于 jstack -l PID
+jcmd PID Thread.print -l
+```
+
 ## 使用 kill -3
 
 kill 可以向特定的进程发送信号(SIGNAL)，缺省情况是发送终止(TERM) 的信号 ，即 kill PID 与 kill -15 PID 或 kill -TERM PID 是等价的。JVM 进程会监听 QUIT 信号(其值为 3)，当收到这个信号时，会打印出当时的线程堆栈和堆内存使用概要，相比 jstack，此时多了堆内存的使用概要情况。但 jstack 可以指定 -l 参数，打印锁的信息。
@@ -135,4 +147,20 @@ jmap -histo PID
 
 # 也可以只统计堆中的存活对象，加上 live 子参数，但使用 -F 时不支持 live
 jmap -histo:live PID
+```
+
+## 使用 jcmd
+
+```sh
+# 等同 jmap -dump:live,format=b,file=FILE_WITH_PATH
+jcmd PID GC.heap_dump FILE_WITH_PATH
+
+# 等同 jmap -dump:format=b,file=FILE_WITH_PATH
+jcmd PID GC.heap_dump -all FILE_WITH_PATH
+
+# 等同 jmap -histo:live PID
+jcmd PID GC.class_histogram
+
+# 等同 jmap -histo PID
+jcmd PID GC.class_histogram -all
 ```
