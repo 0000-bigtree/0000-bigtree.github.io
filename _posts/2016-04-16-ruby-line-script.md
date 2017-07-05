@@ -132,10 +132,10 @@ un 是一个包装了 webrick 功能的的模块，httpd 是其中的 1 个方�
 
     ruby -rsinatra -e'set :public_folder, "."; set :port, 8000'
 
-很多语言都有一行脚本运行 http 服务器，python3 的例子如下，更多例子见 [https://gist.github.com/willurd/5720255](https://gist.github.com/willurd/5720255)。
+很多语言都有一行脚本运行 http 服务器，python 的例子如下，更多例子见 [https://gist.github.com/willurd/5720255](https://gist.github.com/willurd/5720255)。
 
-    python -m http.server 8000
-
+    python -m http.server 8000 # python3
+    python -m SimpleHTTPServer # python2
 
 也可以自己编写库来运行，-I 表示在 $LOAD_PATH 中添加 1 个加载搜索路径，在 ruby 解释器的命令行中参数中，可使用多个 -I。
 
